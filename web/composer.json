@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Massey University Internet Programming 159.339 Assignment 2",
   "require": {
-    "dannyvankooten/php-router":"dev-master"
+    "dannyvankooten/php-router":"dev-master",
+	"php": ">=7.1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*",
