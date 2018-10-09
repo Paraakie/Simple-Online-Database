@@ -1,0 +1,41 @@
+<!-- This page displays all the transactions of one user,
+     no matter how many accounts an user has -->
+<?php include "header.phtml" ?>
+<!---------- Body starts --------------->
+<h2>The TransHub</h2>
+<p>All of your transactions in one place</p>
+
+<table style="border-collapse: collapse;" border = "1">
+    <thead>
+        <tr>
+            <th onclick="<?= $tableHeaderOnClickListeners[0] ?>" style="cursor:pointer">ID &#x21F5;</th>
+            <th onclick="<?= $tableHeaderOnClickListeners[1] ?>" style="cursor:pointer">Account No. &#x21F5;</th>
+            <th onclick="<?= $tableHeaderOnClickListeners[2] ?>" style="cursor:pointer">Date &#x21F5;</th>
+            <th onclick="<?= $tableHeaderOnClickListeners[3] ?>" style="cursor:pointer">Amount in $ &#x21F5;</th>
+            <th onclick="<?= $tableHeaderOnClickListeners[4] ?>" style="cursor:pointer">Type &#x21F5;</th>
+        </tr>
+    </thead>
+    <tbody id="transactions">
+        <?php for (; $transactions->valid(); $transactions->next()) { //couldn't get foreach to work for empty generator
+            $transaction = $transactions->current(); ?>
+            <tr>
+                <td><?= $transaction->getId() ?></td>
+                <td><?= $transaction->getAccountID() ?></td>
+                <td><?= $transaction->getTime()->format('Y-m-d H:i:s') ?></td>
+                <td><?
+                    $amount = $transaction->getAmount() / 100;
+                    echo "$amount"
+                    ?></td>
+                <td><?= $transaction->getType() ?></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+
+<br>
+<a href="<?= $linkTo('Home'); ?>">Back</a>
+
+<!---------- Body ends -------------------->
+<?php include "footer.phtml" ?>
+
+<?= $scripts ?>

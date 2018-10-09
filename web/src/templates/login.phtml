@@ -1,0 +1,17 @@
+<!--This is the login page, user must enter username and password in order to login-->
+<?php include "header.phtml" ?>
+
+<form style="text-align:center;padding-top:80px;" method="post" >
+
+    <? echo "<p style='color:red;'>$error</p>"?>
+    <br>
+    <p>User Name<br>
+    <input type="text" name="userName" value="<?= $userName ?>"></p>
+    <p>Password<br>
+    <input type="password" name="userPassword" value="<?= $userPassword ?>"></p>
+    <p><input type="submit" value="Login" name="validateLogin">
+    <input type="submit" value="Sign up" name="signUp"></p>
+</form>
+
+<?php include "footer.phtml" ?>
+

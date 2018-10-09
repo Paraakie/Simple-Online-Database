@@ -1,0 +1,26 @@
+<!--This page allows users to create a new user account. Users must enter a user name that's not been used and
+    password twice which must be identical
+-->
+<?php include "header.phtml" ?>
+
+<div style="text-align:center;">
+
+<h2>Please Enter Your Details</h2>
+
+<form align="center" style="padding-top:80px;" method="post" action="">
+
+    <? echo "<p style='color:red;'>$error</p>"?>
+    <br>
+    <p>User Name<br>
+    <input type="text" name="userName" value="<?= $userName ?>" required></p>
+    <p>Password<br>
+    <input type="password" name="userPassword" value="<?= $userPassword ?>" required></p>
+    <p>Re-Enter Password<br>
+    <input type="password" name="userPassword2" value="<?= $userPassword2 ?>" required></p>
+    <p><input type="submit" value="Sign Up" name="signUp">
+    <input type="reset" value="Reset"></p>
+</form>
+</div>
+<?php include "footer.phtml" ?>
+
+
