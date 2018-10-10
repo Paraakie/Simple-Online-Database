@@ -51,7 +51,7 @@ class BankAccountController extends Controller
 
         $accounts = $user->getBankAccounts();
         $view = new View('userHome');
-        $view->addData('userName', $user->getName());
+        $view->addData('userName', $user->getUserName());
         $view->addData('accounts', $accounts);
         $view->addData('scripts', $scripts);
         $view->addData('tableHeaderOnClickListeners', $tableHeaderOnClickListeners);

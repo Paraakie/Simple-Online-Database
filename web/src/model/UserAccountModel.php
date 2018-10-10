@@ -15,9 +15,14 @@ class UserAccountModel extends Model
     private $id;
 
     /**
-     * @var string Name, used to login
+     * @var string The name to call the user
      */
-    private $name;
+    private $nickName;
+
+    /**
+     * @var string The name used to login
+     */
+    private $userName;
 
     /**
      * @var string Hash of user password
@@ -37,7 +42,9 @@ class UserAccountModel extends Model
     public function loadByID(int $id): ?UserAccountModel
     {
         //query the database
-        if (!$result = $this->db->query("SELECT `name`, `password`, `email` FROM `user_accounts` WHERE `id`=$id;")) {
+        if (!$result = $this->db->query(
+            "SELECT `nickName`, `userName`, `password`, `email` FROM `user_accounts` WHERE `id`=$id;"
+        )) {
             die($this->db->error);
         }
 
@@ -46,7 +53,8 @@ class UserAccountModel extends Model
             return null;
         }
 
-        $this->name = $data['name'];
+        $this->nickName = $data['nickName'];
+        $this->userName = $data['userName'];
         $this->password = $data['password'];
         $this->email = $data['email'];
         $this->id = $id;
@@ -55,62 +63,63 @@ class UserAccountModel extends Model
     }
 
     /**
-     * Loads the user account with the given name and password.
+     * Loads the user account with the given user name and password.
      * The password should be hashed already.
-     * @param $name string The account name
+     * @param $userName string The account name
      * @param $password string The account password
      * @return UserAccountModel An account if the account exists, null otherwise
      */
-    public function loadByNameAndPassword(string $name, string $password): ?UserAccountModel
+    public function loadByUserNameAndPassword(string $userName, string $password): ?UserAccountModel
     {
         if (!$selectAccountByNameAndPassword = $this->db->prepare(
-            "SELECT `id`, `email` FROM `user_accounts` WHERE `name`=? AND `password`=?;"
+            "SELECT `id`, `nickName`, `email` FROM `user_accounts` WHERE `userName`=? AND `password`=?;"
         )) {
             die($this->db->error);
         }
-        $selectAccountByNameAndPassword->bind_param("ss", $name, $password);
+        $selectAccountByNameAndPassword->bind_param("ss", $userName, $password);
         if (!$result = $selectAccountByNameAndPassword->execute()) {
             $selectAccountByNameAndPassword->close();
             die($this->db->error);
         }
-        $selectAccountByNameAndPassword->bind_result($id, $email);
-        if ($selectAccountByNameAndPassword->fetch()) {
-            $this->name = $name;
+        $selectAccountByNameAndPassword->bind_result($id, $nickName, $email);
+        $result = $selectAccountByNameAndPassword->fetch();
+        $selectAccountByNameAndPassword->close();
+        if ($result) {
+            $this->nickName = $nickName;
+            $this->userName = $userName;
             $this->password = $password;
             $this->email = $email;
             $this->id = $id;
-
-            $selectAccountByNameAndPassword->close();
             return $this;
         }
-        $selectAccountByNameAndPassword->close();
         return null;
     }
 
     /**
      * Loads the user account with the given name.
-     * @param $name string The account name
+     * @param $userName string The account name
      * @return UserAccountModel An account if the account exists, null otherwise
      */
-    public function loadByName(string $name): ?UserAccountModel
+    public function loadByUserName(string $userName): ?UserAccountModel
     {
         if (!$selectAccountByName = $this->db->prepare(
-            "SELECT `id`, `password`, `email` FROM `user_accounts` WHERE `name`=?;"
+            "SELECT `id`, `nickName`, `password`, `email` FROM `user_accounts` WHERE `userName`=?;"
         )) {
             die($this->db->error);
         }
-        $selectAccountByName->bind_param("s", $name);
+        $selectAccountByName->bind_param("s", $userName);
         if (!$result = $selectAccountByName->execute()) {
             $selectAccountByName->close();
             // throw new ...
             die($this->db->error);
         }
 
-        $selectAccountByName->bind_result($id, $password, $email);
+        $selectAccountByName->bind_result($id, $nickName, $password, $email);
         $result = $selectAccountByName->fetch();
         $selectAccountByName->close();
         if ($result) {
-            $this->name = $name;
+            $this->$nickName = $nickName;
+            $this->userName = $userName;
             $this->password = $password;
             $this->email = $email;
             $this->id = $id;
@@ -127,14 +136,16 @@ class UserAccountModel extends Model
      */
     public function save(): UserAccountModel
     {
-        $name = $this->name;
+        $userName = $this->userName;
         $password = $this->password;
         $email = $this->email;
         if (!isset($this->id)) {
-            if (!$stm = $this->db->prepare("INSERT INTO `user_accounts`(`name`, `password`, `email`) VALUES(?, ?, ?)")) {
+            if (!$stm = $this->db->prepare(
+                "INSERT INTO `user_accounts`(`nickName`, `userName`, `password`, `email`) VALUES(?, ?, ?, ?)"
+            )) {
                 die($this->db->error);
             }
-            $stm->bind_param("sss", $name, $password, $email);
+            $stm->bind_param("ssss", $this->nickName, $userName, $password, $email);
             $result = $stm->execute();
             $stm->close();
             if (!$result) {
@@ -143,10 +154,12 @@ class UserAccountModel extends Model
             $this->id = $this->db->insert_id;
         } else {
             // saving existing account - perform UPDATE
-            if (!$stm = $this->db->prepare("UPDATE `user_accounts` SET `name`=?, `password`=?, `email`=? WHERE `id`=?;")) {
+            if (!$stm = $this->db->prepare(
+                "UPDATE `user_accounts` SET `nickName`=?, `userName`=?, `password`=?, `email`=? WHERE `id`=?;"
+            )) {
                 die($this->db->error);
             }
-            $stm->bind_param("sssi", $name, $password, $email, $this->id);
+            $stm->bind_param("ssssi", $this->nickName, $userName, $password, $email, $this->id);
             $result = $stm->execute();
             $stm->close();
             if (!$result) {
@@ -176,21 +189,36 @@ class UserAccountModel extends Model
     }
 
     /**
+     * @return string The name to call the user by
+     */
+    public function getNickName(): string {
+        return $this->nickName;
+    }
+
+    /**
+     * @param string $nickName The new name to call the user by
+     */
+    public function setNickName(string $nickName): void
+    {
+        $this->nickName = $nickName;
+    }
+
+    /**
      * Gets the account name
      * @return string The account name
      */
-    public function getName(): ?string
+    public function getUserName(): ?string
     {
-        return $this->name;
+        return $this->userName;
     }
 
     /**
      * Sets the account name
-     * @param string $name The new account name
+     * @param string $userName The new account name
      */
-    public function setName(string $name): void
+    public function setUserName(string $userName): void
     {
-        $this->name = $name;
+        $this->userName = $userName;
     }
 
     public function getEmail(): string
@@ -210,40 +238,6 @@ class UserAccountModel extends Model
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * Gets all the bank accounts for this user
-     * @return \Generator|ProductModel[] Accounts
-     */
-    public function getBankAccounts(): \Generator
-    {
-        if (!$result = $this->db->query(
-            "SELECT `id` FROM `bank_accounts` WHERE bank_accounts.userID=$this->id;"
-        )) {
-            die($this->db->error);
-        }
-        $accountIds = array_column($result->fetch_all(), 0);
-        foreach ($accountIds as $id) {
-            // Use a generator to save on memory/resources
-            // load accounts from DB one at a time only when required
-            yield (new ProductModel())->load($id);
-        }
-    }
-
-    /**
-     * @param int $bankAccountID
-     * @return ProductModel|null The users's bank account if successful, null otherwise
-     */
-    public function getBankAccountByID(int $bankAccountID): ?ProductModel
-    {
-        if (!$result = $this->db->query(
-            "SELECT `id` FROM `bank_accounts` WHERE bank_accounts.userID=$this->id 
-                AND bank_accounts.id=$bankAccountID;"
-        )) {
-            die($this->db->error);
-        }
-        return $result->num_rows == 1 ? (new ProductModel())->load($bankAccountID) : null;
     }
 
     /**

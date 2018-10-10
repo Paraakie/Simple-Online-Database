@@ -41,7 +41,7 @@ class UserAccountController extends Controller
             return 'The account name is already in use';
         }
         //Information that user entered are correct, eligible to create a new user account
-        $userAccount->setName($name);
+        $userAccount->setUserName($name);
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $userAccount->setPassword($passwordHash);
         $userAccount->setEmail("");
