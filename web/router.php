@@ -35,46 +35,6 @@ $collection->attachRoute(
 );
 
 /**
- * Create an account,
- * after the enters a name 'enterAccountName'
- */
-$collection->attachRoute(
-    new Route(
-        '/account/create',
-        array(
-            '_controller' => 'jis\a2\controller\BankAccountController::createAction',
-            'methods' => 'GET',
-            'name' => 'accountCreate'
-        )
-    )
-);
-
-$collection->attachRoute(
-    new Route(
-        '/account/create',
-        array(
-            '_controller' => 'jis\a2\controller\BankAccountController::createAction',
-            'methods' => 'POST',
-            'name' => 'accountCreate'
-        )
-    )
-);
-
-/**
- * Delete an account
- */
-$collection->attachRoute(
-    new Route(
-        '/account/delete/:id',
-        array(
-            '_controller' => 'jis\a2\controller\BankAccountController::deleteAction',
-            'methods' => 'GET',
-            'name' => 'accountDelete'
-        )
-    )
-);
-
-/**
  * our login router
  */
 $collection->attachRoute(
@@ -122,75 +82,6 @@ $collection->attachRoute(
 );
 
 /**
- * Transaction Pages
- */
-//Transaction Index
-$collection->attachRoute(
-    new Route(
-        '/transactions/',
-        array(
-            '_controller' => 'jis\a2\controller\TransController::createTransactionsPage',
-            'methods' => 'GET',
-            'name' => 'transactions'
-        )
-    )
-);
-
-/**
- *  Deposit Routers
- */
-
-$collection->attachRoute(
-    new Route(
-        '/account/deposit/:id',
-        array(
-            '_controller' => 'jis\a2\controller\TransController::depositPage',
-            'methods' => 'GET',
-            'name' => 'deposit'
-        )
-    )
-);
-
-$collection->attachRoute(
-    new Route(
-        '/account/deposit/:id',
-        array(
-            '_controller' => 'jis\a2\controller\TransController::depositPage',
-            'methods' => 'POST',
-            'name' => 'deposit'
-        )
-    )
-);
-
-/**
- * Transaction Transfer
- */
-$collection->attachRoute(
-    new Route(
-        '/transactions/transfer/:id',
-        array(
-            '_controller' => 'jis\a2\controller\TransController::createTransTransferPage',
-            'methods' => 'GET',
-            'name' => 'TransTransfer'
-        )
-    )
-);
-
-/**
- * Transaction Withdrawal
- */
-$collection->attachRoute(
-    new Route(
-        '/transactions/withdrawal/:id',
-        array(
-            '_controller' => 'jis\a2\controller\TransController::createTransWithdrawalPage',
-            'methods' => 'GET',
-            'name' => 'TransWithdrawal'
-        )
-    )
-);
-
-/**
  * Logout router
  */
 $collection->attachRoute(
@@ -203,6 +94,24 @@ $collection->attachRoute(
         )
     )
 );
+
+/**
+ * Search Screen
+ */
+$collection->attachRoute(
+    new Route(
+        '/account/search',
+        array(
+            '_controller' => 'jis\a2\controller\SearchController::search',
+            'methods' => 'GET',
+            'name' => 'search'
+        )
+    )
+);
+
+/**
+ * Browse Screen
+ */
 
 
 $router = new Router($collection);
