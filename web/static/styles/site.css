@@ -25,4 +25,16 @@ html, body {
 h1 {
     font-size: 2.6em;
     text-align: center;
+    margin-top: 7%;
+}
+
+img {
+    position:absolute;
+    left: 0;
+    top: 0;
+}
+
+.login > table{
+    text-align: center;
+    margin:auto;
 }
