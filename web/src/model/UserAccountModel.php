@@ -214,7 +214,7 @@ class UserAccountModel extends Model
 
     /**
      * Gets all the bank accounts for this user
-     * @return \Generator|BankAccountModel[] Accounts
+     * @return \Generator|ProductModel[] Accounts
      */
     public function getBankAccounts(): \Generator
     {
@@ -227,15 +227,15 @@ class UserAccountModel extends Model
         foreach ($accountIds as $id) {
             // Use a generator to save on memory/resources
             // load accounts from DB one at a time only when required
-            yield (new BankAccountModel())->load($id);
+            yield (new ProductModel())->load($id);
         }
     }
 
     /**
      * @param int $bankAccountID
-     * @return BankAccountModel|null The users's bank account if successful, null otherwise
+     * @return ProductModel|null The users's bank account if successful, null otherwise
      */
-    public function getBankAccountByID(int $bankAccountID): ?BankAccountModel
+    public function getBankAccountByID(int $bankAccountID): ?ProductModel
     {
         if (!$result = $this->db->query(
             "SELECT `id` FROM `bank_accounts` WHERE bank_accounts.userID=$this->id 
@@ -243,7 +243,7 @@ class UserAccountModel extends Model
         )) {
             die($this->db->error);
         }
-        return $result->num_rows == 1 ? (new BankAccountModel())->load($bankAccountID) : null;
+        return $result->num_rows == 1 ? (new ProductModel())->load($bankAccountID) : null;
     }
 
     /**

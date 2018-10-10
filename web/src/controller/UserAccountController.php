@@ -40,7 +40,7 @@ class UserAccountController extends Controller
         if ($userAccount->loadByName($name) != null) {
             return 'The account name is already in use';
         }
-        //Information that user entered are correct, elgible to create a new user account
+        //Information that user entered are correct, eligible to create a new user account
         $userAccount->setName($name);
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $userAccount->setPassword($passwordHash);

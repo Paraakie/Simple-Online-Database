@@ -3,7 +3,7 @@
 namespace jis\a2\controller;
 
 use jis\a2\model\{
-    BankAccountModel, UserAccountModel
+    ProductModel, UserAccountModel
 };
 use jis\a2\view\View;
 
@@ -73,10 +73,10 @@ class BankAccountController extends Controller
         }
 
         /**
-         * @var BankAccountModel, when user successfully created a new account, this object is created which contains
+         * @var ProductModel, when user successfully created a new account, this object is created which contains
          * all information about the new account.
          */
-        $account = new BankAccountModel();
+        $account = new ProductModel();
         $account->setName($accName); // will come from Form data
         $account->setBalance(0);
         $account->setUserId($user->getID());
@@ -149,7 +149,7 @@ class BankAccountController extends Controller
         }
 
         /**
-         * @var BankAccountModel this object is used to check current user's authority to the account
+         * @var ProductModel this object is used to check current user's authority to the account
          */
         $bankAccount = $user->getBankAccountByID($id);
         if ($bankAccount !== null) {

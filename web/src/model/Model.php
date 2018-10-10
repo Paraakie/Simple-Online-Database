@@ -67,24 +67,46 @@ class Model
             }
         }
 
-        $result = $this->db->query("SHOW TABLES LIKE 'bank_accounts';");
+        $result = $this->db->query("SHOW TABLES LIKE 'categories';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
 
             $result = $this->db->query(
-                "CREATE TABLE `bank_accounts` (
+                "CREATE TABLE `categories` (
                                           `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-                                          `name` varchar(256) NOT NULL,
-                                          `balance` bigint NOT NULL,
-                                          `userID` int(8) unsigned NOT NULL,
-                                          PRIMARY KEY (`id`),
-                                          FOREIGN KEY (`userID`) REFERENCES `user_accounts`(`id`)
+                                          `name` varchar(255) NOT NULL,
+                                          PRIMARY KEY (`id`)
                                            );"
             );
 
             if (!$result) {
                 // handle appropriately
-                error_log("Failed creating table account", 0);
+                error_log("Failed creating table categories", 0);
+                die($this->db->error);
+            }
+        }
+
+        $result = $this->db->query("SHOW TABLES LIKE 'products';");
+        if ($result->num_rows == 0) {
+            // table doesn't exist create it
+
+            $result = $this->db->query(
+                "CREATE TABLE `products` (
+                                          `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+                                          `name` varchar(255) NOT NULL,
+                                          `stockKeepingUnit` varchar(255) NOT NULL,
+                                          `cost` BIGINT unsigned NOT NULL,
+                                          `quantity` BIGINT unsigned NOT NULL,
+                                          `categoryID` int(8) unsigned NOT NULL,
+                                          PRIMARY KEY (`id`),
+                                          UNIQUE (`stockKeepingUnit`),
+                                          FOREIGN KEY (`categoryID`) REFERENCES `categories`(`id`)
+                                           );"
+            );
+
+            if (!$result) {
+                // handle appropriately
+                error_log("Failed creating table products", 0);
                 die($this->db->error);
             }
         }

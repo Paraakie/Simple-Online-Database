@@ -2,7 +2,7 @@
 
 namespace jis\a2\controller;
 
-use jis\a2\model\BankAccountModel;
+use jis\a2\model\ProductModel;
 use jis\a2\model\TransactionModel;
 use jis\a2\model\UserAccountModel;
 use jis\a2\view\View;
@@ -158,7 +158,7 @@ class TransController extends Controller
             return 'Unable to access the account ' . $fromAccountID . ' please try again or contact customer support';
         }
         $toAccountID = filter_var($toAccountStr, FILTER_VALIDATE_INT);
-        $toAccount = $toAccountID === false ? null : (new BankAccountModel())->load($toAccountID);
+        $toAccount = $toAccountID === false ? null : (new ProductModel())->load($toAccountID);
         if ($toAccount === null) {
             return "Invalid account ID to transfer to";
         }
