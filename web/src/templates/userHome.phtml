@@ -6,7 +6,7 @@
     - Logout
     -->
 <?php include "header.phtml" ?>
-<form style="position:fixed;top:0;right:0;"method="get" action="logout">
+<form id = "productTable" method="get" action="logout">
     <?
     $date = date("i-h-s");
     echo date("l, jS \of F ");
@@ -14,7 +14,7 @@
 <input type="submit" value="Log out" name="logout" style="font-size:16px;">
 
 </form>
-<div style="font-size:20px;">
+<div id = "welcomeMessage">
 
 <? $hours = Date('G');
     if($hours >= 6 && $hours < 12){
@@ -25,7 +25,8 @@
         echo "<p>Good Evening, $userName</p>";
     };
 ?>
-</div>  
+</div>
+
 <div>
     <p1>Your Accounts:</p1><br>
 

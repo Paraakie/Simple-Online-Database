@@ -1,10 +1,9 @@
 <!--This is the login page, user must enter username and password in order to login-->
 <?php include "header.phtml" ?>
 
-<form style="text-align:center;padding-top:80px;" method="post" >
-
-    <? echo "<p style='color:red;'>$error</p>"?>
-    <div class="login">
+<div id="logIn">
+    <form method="post" >
+        <? echo "<p class='errorMessage'>$error</p>"?>
         <table>
             <tr>
                 <td>User Name:</td>
@@ -19,8 +18,7 @@
                 <td><input type="submit" value="Sign up" name="signUp"></td>
             </tr>
         </table>
-    </div>
-</form>
-
+    </form>
+</div>
 <?php include "footer.phtml" ?>
 

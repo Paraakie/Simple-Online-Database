@@ -1,25 +1,14 @@
-/** Make footer sticked at the bottom of the page,from https://css-tricks.com/snippets/css/sticky-footer/*/
-* {
+/**
+ * Selectors
+ */
+
+* { /* Make footer sticked at the bottom of the page,from https://css-tricks.com/snippets/css/sticky-footer/ */
     margin: 0;
 }
+
 html, body {
     height: 100%;
     background-color: lightgrey;
-}
-.page-wrap {
-    min-height: 100%;
-    /* equal to footer height */
-    margin-bottom: -30px;
-}
-.page-wrap:after {
-    content: "";
-    display: block;
-}
-.site-footer, .page-wrap:after {
-    height: 10px;
-}
-.site-footer {
-    text-align: center;
 }
 
 h1 {
@@ -34,25 +23,71 @@ img {
     top: 0;
 }
 
-.login > table{
-    text-align: center;
-    margin:auto;
-}
-
-.signUp{
-    text-align: center;
-    margin:auto;
-}
-
-.signUp table{
-    text-align: center;
-    margin: auto;
-}
-
 table td {
     text-align:left;
 }
 
+/**
+ * Classes
+ * for multiple use, generic names
+ */
 .center{
     text-align: center;
+}
+
+.errorMessage {
+    color:red;
+}
+
+/**
+ * IDs
+ * for one time use, specific names
+ */
+
+#productTable {
+    position:fixed;
+    top:0;
+    right:0;
+}
+
+#welcomeMessage {
+    font-size:20px;
+}
+
+#site-footer, .page-wrap:after {
+    height: 10px;
+}
+
+#site-footer {
+    text-align: center;
+}
+
+#signUp{
+    text-align: center;
+    margin:auto;
+}
+
+#signUp table{
+    text-align: center;
+    margin: auto;
+}
+
+#page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -30px;
+}
+#page-wrap:after {
+    content: "";
+    display: block;
+}
+
+#logIn form {
+    text-align:center;
+    padding-top:80px;
+}
+
+#logIn table{
+    text-align: center;
+    margin:auto;
 }

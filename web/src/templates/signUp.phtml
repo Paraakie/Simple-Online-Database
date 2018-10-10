@@ -2,14 +2,14 @@
     password twice which must be identical
 -->
 <?php include "header.phtml" ?>
-
-<div class="signUp">
+<!------------------------------>
+<div id="signUp">
 
     <h2>Please Enter Your Details</h2>
 
-    <form align="center" method="post" action="">
+    <form class="center" method="post" action="">
 
-            <? echo "<p style='color:red;'>$error</p>"?>
+            <? echo "<p class='errorMessage'>$error</p>"?>
             <br>
             <table>
                 <tr>
@@ -41,6 +41,7 @@
             </table>
     </form>
 </div>
+<!------------------------------>
 <?php include "footer.phtml" ?>
 
 
