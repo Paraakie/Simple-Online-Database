@@ -44,6 +44,7 @@ class UserAccountController extends Controller
         $userAccount->setName($name);
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $userAccount->setPassword($passwordHash);
+        $userAccount->setEmail("");
         $userAccount->save();
         session_start();
         $_SESSION['userID'] = $userAccount->getId();

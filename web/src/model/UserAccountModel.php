@@ -25,6 +25,11 @@ class UserAccountModel extends Model
     private $password;
 
     /**
+     * @var string the email address of the user
+     */
+    private $email;
+
+    /**
      * Loads the user account with the given id
      * @param $id int The account id
      * @return $this UserAccountModel The loaded account if successful, null otherwise
@@ -32,7 +37,7 @@ class UserAccountModel extends Model
     public function loadByID(int $id): ?UserAccountModel
     {
         //query the database
-        if (!$result = $this->db->query("SELECT `name`, `password` FROM `user_accounts` WHERE `id`=$id;")) {
+        if (!$result = $this->db->query("SELECT `name`, `password`, `email` FROM `user_accounts` WHERE `id`=$id;")) {
             die($this->db->error);
         }
 
@@ -43,6 +48,7 @@ class UserAccountModel extends Model
 
         $this->name = $data['name'];
         $this->password = $data['password'];
+        $this->email = $data['email'];
         $this->id = $id;
 
         return $this;
@@ -58,7 +64,7 @@ class UserAccountModel extends Model
     public function loadByNameAndPassword(string $name, string $password): ?UserAccountModel
     {
         if (!$selectAccountByNameAndPassword = $this->db->prepare(
-            "SELECT `id` FROM `user_accounts` WHERE `name`=? AND `password`=?;"
+            "SELECT `id`, `email` FROM `user_accounts` WHERE `name`=? AND `password`=?;"
         )) {
             die($this->db->error);
         }
@@ -67,10 +73,11 @@ class UserAccountModel extends Model
             $selectAccountByNameAndPassword->close();
             die($this->db->error);
         }
-        $selectAccountByNameAndPassword->bind_result($id);
+        $selectAccountByNameAndPassword->bind_result($id, $email);
         if ($selectAccountByNameAndPassword->fetch()) {
             $this->name = $name;
             $this->password = $password;
+            $this->email = $email;
             $this->id = $id;
 
             $selectAccountByNameAndPassword->close();
@@ -88,7 +95,7 @@ class UserAccountModel extends Model
     public function loadByName(string $name): ?UserAccountModel
     {
         if (!$selectAccountByName = $this->db->prepare(
-            "SELECT `id`, `password` FROM `user_accounts` WHERE `name`=?;"
+            "SELECT `id`, `password`, `email` FROM `user_accounts` WHERE `name`=?;"
         )) {
             die($this->db->error);
         }
@@ -99,12 +106,13 @@ class UserAccountModel extends Model
             die($this->db->error);
         }
 
-        $selectAccountByName->bind_result($id, $password);
+        $selectAccountByName->bind_result($id, $password, $email);
         $result = $selectAccountByName->fetch();
         $selectAccountByName->close();
         if ($result) {
             $this->name = $name;
             $this->password = $password;
+            $this->email = $email;
             $this->id = $id;
 
             return $this;
@@ -121,11 +129,12 @@ class UserAccountModel extends Model
     {
         $name = $this->name;
         $password = $this->password;
+        $email = $this->email;
         if (!isset($this->id)) {
-            if (!$stm = $this->db->prepare("INSERT INTO `user_accounts`(`name`, `password`) VALUES(?, ?)")) {
+            if (!$stm = $this->db->prepare("INSERT INTO `user_accounts`(`name`, `password`, `email`) VALUES(?, ?, ?)")) {
                 die($this->db->error);
             }
-            $stm->bind_param("ss", $name, $password);
+            $stm->bind_param("sss", $name, $password, $email);
             $result = $stm->execute();
             $stm->close();
             if (!$result) {
@@ -134,10 +143,10 @@ class UserAccountModel extends Model
             $this->id = $this->db->insert_id;
         } else {
             // saving existing account - perform UPDATE
-            if (!$stm = $this->db->prepare("UPDATE `user_accounts` SET `name`=?, `password`=? WHERE `id`=?;")) {
+            if (!$stm = $this->db->prepare("UPDATE `user_accounts` SET `name`=?, `password`=?, `email`=? WHERE `id`=?;")) {
                 die($this->db->error);
             }
-            $stm->bind_param("ssi", $name, $password, $this->id);
+            $stm->bind_param("sssi", $name, $password, $email, $this->id);
             $result = $stm->execute();
             $stm->close();
             if (!$result) {
@@ -182,6 +191,16 @@ class UserAccountModel extends Model
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
     /**

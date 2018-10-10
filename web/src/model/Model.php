@@ -5,7 +5,7 @@ namespace jis\a2\model;
 use mysqli;
 
 /**
- * Defined helper function for models and creates the database if it doesn't exist
+ * Defines helper function for models and creates the database if it doesn't exist
  *
  * @package jis/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
@@ -21,7 +21,7 @@ class Model
     const DB_HOST = 'mysql';
     const DB_USER = 'root';
     const DB_PASS = 'root';
-    const DB_NAME = 'a2';
+    const DB_NAME = 'a3';
 
     public function __construct()
     {
@@ -47,28 +47,29 @@ class Model
             die($this->db->error);
         }
 
-        $result = $this->db->query("SHOW TABLES LIKE 'bank_accounts';");
+        $result = $this->db->query("SHOW TABLES LIKE 'user_accounts';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
 
-            $result = $this->db->query("SHOW TABLES LIKE 'user_accounts';");
-            if ($result->num_rows == 0) {
-                // table doesn't exist create it
-
-                $result = $this->db->query(
-                    "CREATE TABLE `user_accounts` (
+            $result = $this->db->query(
+                "CREATE TABLE `user_accounts` (
                                           `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
                                           `name` varchar(256) NOT NULL,
                                           `password` varchar(256) NOT NULL,
+                                          `email` varchar(255) NOT NULL,
                                           PRIMARY KEY (`id`) );"
-                );
+            );
 
-                if (!$result) {
-                    // handle appropriately
-                    error_log("Failed creating table user_accounts", 0);
-                    die($this->db->error);
-                }
+            if (!$result) {
+                // handle appropriately
+                error_log("Failed creating table user_accounts", 0);
+                die($this->db->error);
             }
+        }
+
+        $result = $this->db->query("SHOW TABLES LIKE 'bank_accounts';");
+        if ($result->num_rows == 0) {
+            // table doesn't exist create it
 
             $result = $this->db->query(
                 "CREATE TABLE `bank_accounts` (
