@@ -112,7 +112,16 @@ $collection->attachRoute(
 /**
  * Browse Screen
  */
-
+$collection->attachRoute(
+    new Route(
+        '/account/browse',
+        array(
+            '_controller' => 'jis\a2\controller\BrowseController::browse',
+            'methods' => 'GET',
+            'name' => 'browse'
+        )
+    )
+);
 
 $router = new Router($collection);
 $router->setBasePath('/');

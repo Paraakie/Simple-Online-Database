@@ -54,20 +54,11 @@ table td {
     font-size:20px;
 }
 
-#site-footer, .page-wrap:after {
+#site-footer, #page-wrap:after {
     height: 10px;
 }
 
-#site-footer {
-    text-align: center;
-}
-
-#signUp{
-    text-align: center;
-    margin:auto;
-}
-
-#signUp table{
+#signUp, #signUp table{
     text-align: center;
     margin: auto;
 }
