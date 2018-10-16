@@ -2,6 +2,8 @@
 
 namespace jis\a2\controller;
 
+use jis\a2\view\View;
+
 /**
  * Class HomeController handles redirecting to the right page when the default page is requested
  *
@@ -20,11 +22,16 @@ class HomeController extends Controller
         session_start();
         if (isset($_SESSION['userID'])) {
             //user is logged in, redirect to the home page
-            $this->redirect('showAccounts');
+            $this->redirect('showHome');
         } else {
             //user hasn't logged in, to login page
             $this->redirect('login');
         }
+    }
+
+    public function showHome() {
+        $view = new View("userHome");
+        echo $view->render();
     }
 
     /**

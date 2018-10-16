@@ -20,4 +20,9 @@ class BrowseController
         $view = new View('browse');
         echo $view->render();
     }
+
+    /**
+     *
+     */
+
 }

@@ -54,8 +54,9 @@ class Model
             $result = $this->db->query(
                 "CREATE TABLE `user_accounts` (
                                           `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-                                          `name` varchar(256) NOT NULL,
-                                          `password` varchar(256) NOT NULL,
+                                          `userName` varchar(255) NOT NULL,
+                                          `nickName` varchar(255) NOT NULL,
+                                          `password` varchar(255) NOT NULL,
                                           `email` varchar(255) NOT NULL,
                                           PRIMARY KEY (`id`) );"
             );
