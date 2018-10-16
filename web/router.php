@@ -134,5 +134,19 @@ $collection->attachRoute(
     )
 );
 
+/**
+ * Ajax check for user name existence in signup page
+ */
+$collection->attachRoute(
+    new Route(
+        '/signUp/checkUserName/:id',
+        array(
+            '_controller' => 'jis\a2\controller\UserAccountController::checkUserExist',
+            'methods' => 'GET',
+            'name' => 'checkUserExist'
+        )
+    )
+);
+
 $router = new Router($collection);
 $router->setBasePath('/');
