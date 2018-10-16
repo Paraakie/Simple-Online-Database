@@ -7,9 +7,9 @@
 
     <h2>Please Enter Your Details</h2>
 
-    <form class="center" method="post" action="" onsubmit="return validateSignUp(this)">
+    <form class="center" method="post" action="" onsubmit="return validateSubmit(this)">
 
-            <? echo "<p class='errorMessage' id='errorMessage'>$error</p>"?>
+            <? echo "<p class='errorMessage'>$error</p>"?>
             <br>
             <table>
                 <tr>
@@ -28,17 +28,18 @@
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input id="emailInput" type="text" name="email" value="<?= $email ?>" onfocusout="checkEmailFormat()" required></td>
+                    <td><input id="emailInput" type="text" name="email" value="<?= $email ?>" onfocusout="validateEmail()" required></td>
                 </tr>
                 <tr>
-                    <td id="emailErrorMessage"></td>
+                    <td id="emailErrorMessage" class='errorMessage'></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" name="userPassword" value="<?= $userPassword ?>" required></td>
+                    <td><input type="password" name="userPassword" value="<?= $userPassword ?>" required
+                               onfocusout="validatePassword(this.value)"></td>
                 </tr>
                 <tr>
-                    <td id="passwordErrorMessage"></td>
+                    <td id="passwordErrorMessage" class='errorMessage'></td>
                 </tr>
                 <tr>
                     <td>Re-Enter Password:</td>
@@ -53,36 +54,6 @@
             </table>
     </form>
 </div>
-<script>
-    function validateSignUp(form) {
-        let errorMessage = document.getElementById('errorMessage');
-        errorMessage.innerHTML = "";
-
-        const userPassword = form["userPassword"].value;
-        const userPassword2 = form["userPassword2"].value;
-        if(userPassword !== userPassword2) {
-            errorMessage.innerHTML = "The two passwords must match";
-            return false;
-        }
-        if(userPassword.length < 7) {
-            errorMessage.innerHTML = "The password must be at least 7 characters long";
-            return false;
-        }
-        if(userPassword.length > 14) {
-            errorMessage.innerHTML = "The password cannot be longer than 14 characters";
-            return false;
-        }
-        if(!userPassword.match(/^[a-zA-Z0-9]+$/)) {
-            errorMessage.innerHTML = "The password must contain only letters and digits";
-            return false;
-        }
-        if(!userPassword.match(/[A-Z]+/)) {
-            errorMessage.innerHTML = "The password must contain at least one uppercase letter";
-            return false;
-        }
-        return true;
-    }
-</script>
 <!------------------------------>
 <?php include "footer.phtml" ?>
 
