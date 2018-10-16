@@ -118,7 +118,19 @@ class UserAccountController extends Controller
         }
     }
 
+
     /**
+     * check a user name is exist or not
+     */
+    public function checkUserExist($name){
+        $userAccount = new UserAccountModel();
+        if($userAccount -> loadByUserName($name) != null){
+            echo "user name $name already exist !";
+        }
+
+    }
+
+        /**
      * Gets the current user if their is one or redirects to login
      * @return UserAccountModel|null The current user if their is one, otherwise null
      */
@@ -135,4 +147,6 @@ class UserAccountController extends Controller
             return null;
         }
     }
+
+
 }
