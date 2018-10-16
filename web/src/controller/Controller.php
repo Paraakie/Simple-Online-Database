@@ -14,7 +14,7 @@ class Controller
     /**
      * Redirect to another route
      *
-     * @param $route
+     * @param string $route
      * @param array $params
      */
     public function redirect(string $route, $params = []): void

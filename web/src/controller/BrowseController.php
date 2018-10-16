@@ -9,6 +9,8 @@
 namespace jis\a2\controller;
 
 
+use jis\a2\view\View;
+
 class BrowseController
 {
     /**

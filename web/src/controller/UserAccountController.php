@@ -22,29 +22,26 @@ class UserAccountController extends Controller
     /**
      * Creates a new User Account if the user input is valid, otherwise returns an error
      * @param string $password The password for the new account
-     * @param string $password2 A repeat of the password, will be checked against $password
      * @param string $name The name of the account
+     * @param string $email
      * @return null|string If an error occurred the error message, otherwise null
      */
-    private function handleSignUp(string $password, string $password2, string $name): ?string
+    private function handleSignUp(string $password, string $name, string $email): ?string
     {
         //Error handling
-        if ($password !== $password2) {
-            return 'The two passwords must match';
-        }
         if (strlen($password) < UserAccountController::MIN_PASSWORD_LENGTH) {
             return 'Your password must be at least '
                 . UserAccountController::MIN_PASSWORD_LENGTH . ' characters long';
         }
         $userAccount = new UserAccountModel();
-        if ($userAccount->loadByName($name) != null) {
+        if ($userAccount->loadByUserName($name) != null) {
             return 'The account name is already in use';
         }
         //Information that user entered are correct, eligible to create a new user account
         $userAccount->setUserName($name);
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $userAccount->setPassword($passwordHash);
-        $userAccount->setEmail("");
+        $userAccount->setEmail($email);
         $userAccount->save();
         session_start();
         $_SESSION['userID'] = $userAccount->getId();
@@ -86,7 +83,7 @@ class UserAccountController extends Controller
      */
     private function handleLogin(string $userName, string $userPassword): ?string
     {
-        $user = (new UserAccountModel())->loadByName($userName);
+        $user = (new UserAccountModel())->loadByUserName($userName);
         if ($user !== null && password_verify($userPassword, $user->getPassword())) {
             session_start();
             $_SESSION['userID'] = $user->getId();

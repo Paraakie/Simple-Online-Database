@@ -88,38 +88,27 @@ class ProductModel extends Model
      */
     public function getCategory(): string
     {
-        if (!$result = $this->db->query(
-            "SELECT `name` FROM `categories` WHERE `id`={$this->categoryID};"
+        if (!$stm = $this->db->prepare(
+            "SELECT `name` FROM `categories` WHERE `id`=?;"
         )) {
             die($this->db->error);
         }
-
-        $data = $result->fetch_assoc();
-        if ($data === null) {
-            return null;
+        $stm->bind_param("i", $this->categoryID);
+        $stm->bind_result($name);
+        $result = $stm->fetch();
+        $stm->close();
+        if (!$result) {
+            die($this->db->error);
         }
-        return $data['name'];
+        if(!$result = $stm->execute()) {
+            die($this->db->error);
+        }
+        return $name;
     }
 
     public function getCategoryID(): int
     {
         return $this->categoryID;
-    }
-
-    /**
-     * Gets all transactions made with this product
-     */
-    public function getTransactions(): \Generator
-    {
-        if (!$result = $this->db->query("SELECT `id` FROM `transactions` WHERE `accountID`=$this->id;")) {
-            die($this->db->error);
-        }
-        $transactionIds = array_column($result->fetch_all(), 0);
-        foreach ($transactionIds as $id) {
-            // Use a generator to save on memory/resources
-            // load accounts from DB one at a time only when required
-            yield (new TransactionModel())->loadByID($id);
-        }
     }
 
     /**
