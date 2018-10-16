@@ -7,7 +7,7 @@
 
     <h2>Please Enter Your Details</h2>
 
-    <form class="center" method="post" action="">
+    <form class="center" method="post" action="" onsubmit="return validateSubmit(this)">
 
             <? echo "<p class='errorMessage'>$error</p>"?>
             <br>
@@ -27,17 +27,18 @@
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input id="emailInput" type="text" name="email" value="<?= $email ?>" onfocusout="checkEmailFormat()" required></td>
+                    <td><input id="emailInput" type="text" name="email" value="<?= $email ?>" onfocusout="validateEmail()" required></td>
                 </tr>
                 <tr>
-                    <td id="emailErrorMessage" class="errorMessage"></td>
+                    <td id="emailErrorMessage" class='errorMessage'></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" name="userPassword" value="<?= $userPassword ?>" required></td>
+                    <td><input type="password" name="userPassword" value="<?= $userPassword ?>" required
+                               onfocusout="validatePassword(this.value)"></td>
                 </tr>
                 <tr>
-                    <td id="passwordErrorMessage" class="errorMessage"></td>
+                    <td id="passwordErrorMessage" class='errorMessage'></td>
                 </tr>
                 <tr>
                     <td>Re-Enter Password:</td>
