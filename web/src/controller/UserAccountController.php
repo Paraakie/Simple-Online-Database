@@ -103,7 +103,7 @@ class UserAccountController extends Controller
         if (isset($_POST['validateLogin'])) {
             $error = $this->handleLogin($userName, $userPassword);
             if ($error === null) {
-                $this->redirect('showAccounts');
+                $this->redirect('showHome');
             } else {
                 $view = new View('login');
                 $view->addData('userName', $userName);
