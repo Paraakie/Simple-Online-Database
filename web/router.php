@@ -100,7 +100,7 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/account/search',
+        '/search',
         array(
             '_controller' => 'jis\a2\controller\SearchController::search',
             'methods' => 'GET',
@@ -114,7 +114,7 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/account/browse',
+        '/browse',
         array(
             '_controller' => 'jis\a2\controller\BrowseController::browse',
             'methods' => 'GET',
