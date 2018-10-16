@@ -60,7 +60,7 @@ class UserAccountController extends Controller
             $password2 = $_POST["userPassword2"];
             $error = $this->handleSignUp($password, $password2, $name);
             if ($error === null) {
-                $this->redirect("showAccounts");
+                $this->redirect("showHome");
             } else {
                 $view = new View('signUp');
                 $view->addData('error', $error);

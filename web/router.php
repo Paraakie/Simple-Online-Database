@@ -25,11 +25,11 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/account/',
+        '/home/',
         array(
-            '_controller' => 'jis\a2\controller\BankAccountController::showAccounts',
+            '_controller' => 'jis\a2\controller\HomeController::showHome',
             'methods' => 'GET',
-            'name' => 'showAccounts'
+            'name' => 'showHome'
         )
     )
 );
