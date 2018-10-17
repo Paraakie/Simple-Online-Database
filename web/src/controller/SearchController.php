@@ -23,8 +23,11 @@ class SearchController extends Controller
 
     /**
      * Return the matching Items
+     *
+     * @param string $searchStr
      */
-    public function returnMatches(){
+    public function returnMatches(string $searchStr){
+
         // Array with names
         $a[] = "Anna";
         $a[] = "Brittany";
@@ -58,7 +61,7 @@ class SearchController extends Controller
         $a[] = "Vicky";
 
         // get the q parameter from URL
-        $q = $_REQUEST["q"];
+        $q = $_REQUEST("q");
 
         $hint = "";
 
@@ -79,5 +82,6 @@ class SearchController extends Controller
 
         // Output "no suggestion" if no hint was found or output correct values
         echo $hint === "" ? "no suggestion" : $hint;
+
     }
 }

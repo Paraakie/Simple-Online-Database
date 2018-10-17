@@ -111,11 +111,11 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
-        '/search?=items',
+        '/search/:items',
         array(
             '_controller' => 'jis\a2\controller\SearchController::returnMatches',
             'methods' => 'GET',
-            'name' => 'matched'
+            'name' => 'returnMatches'
         )
     )
 );

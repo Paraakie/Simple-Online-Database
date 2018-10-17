@@ -2,8 +2,8 @@
 
 <?php include "header.phtml" ?>
 <!------------------------------>
+<script src="/static/scripts/searchProducts.js"></script>
 <div id = "search_page">
-    <script type="text/javascript" src="web\static\scripts\searchProducts.js"></script>
     <p>Start typing and we'll suggest products for you!</p>
 
     <form action="">
@@ -11,5 +11,7 @@
     </form>
     <p>Suggestions: <span id="txtHint"></span></p>
 </div>
+<br>
+<a class="backButton" href="<?= $linkTo('Home'); ?>">Back</a>
 <!------------------------------>
 <?php include "footer.phtml" ?>
