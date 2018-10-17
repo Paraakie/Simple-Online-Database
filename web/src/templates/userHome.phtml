@@ -16,15 +16,16 @@
 </form>
 <div id = "welcomeMessage">
 
-<? $hours = Date('G');
-    if($hours >= 6 && $hours < 12){
-        echo "<p>Good Morning, $userName</p>";
-    } else if($hours >= 12 && $hours < 18){
-        echo "<p>Good Afternoon, $userName</p>";
-    } else {
-        echo "<p>Good Evening, $userName</p>";
-    };
-?>
+    <? $hours = Date('G');
+        if($hours >= 6 && $hours < 12){
+            echo "<p>Good Morning</p>";
+        } else if($hours >= 12 && $hours < 18){
+            echo "<p>Good Afternoon</p>";
+        } else {
+            echo "<p>Good Evening</p>";
+        };
+    ?>
+
 </div>
 
 <?php include "footer.phtml" ?>
