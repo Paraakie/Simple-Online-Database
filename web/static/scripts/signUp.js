@@ -100,3 +100,19 @@ function checkUserExist(userInput){
         xHTTP.send();
     }
 }
+
+function centerBasedOnFirstTwoColumns() {
+    let inputForm = document.getElementById("inputForm");
+    let tableBody = document.getElementById("inputBody");
+    const row = tableBody.rows[0];
+    const cells = row.cells;
+    const rowLength = cells.length;
+    let totalWidth = 0;
+    for(let i = 0; i < (rowLength - 1); ++i) {
+        let positionInfo = cells[i].getBoundingClientRect();
+        totalWidth += positionInfo.width;
+    }
+    let windowWidth = window.innerWidth;
+    inputForm.style.position = "absolute";
+    inputForm.style.left = ((windowWidth / 2) - (totalWidth / 2))+'px';
+}
