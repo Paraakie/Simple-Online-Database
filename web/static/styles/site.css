@@ -99,3 +99,24 @@ a {
     margin-left: 40%;
     margin-right: fill;
 }
+
+/**
+*   Menu bar
+*/
+
+.topmenu{
+    width:100%;
+}
+
+.topmenu a{
+    float:left;
+    padding-left:20px;
+    padding-right:20px;
+    width: 20%;
+    font-size:35px;
+
+}
+
+.topmenu a:hover{
+    background-color:rgba(255,165,0,0.5);
+}
