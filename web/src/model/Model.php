@@ -110,6 +110,8 @@ class Model
                 error_log("Failed creating table products", 0);
                 die($this->db->error);
             }
+
+            $this->createSampleProducts();
         }
 
         $result = $this->db->query("SHOW TABLES LIKE 'transactions';");
@@ -133,6 +135,47 @@ class Model
                 error_log("Failed creating table transactions", 0);
                 die($this->db->error);
             }
+        }
+    }
+
+
+    /**
+     * Create Sample Products for testing
+     */
+    public function createSampleProducts(): void
+    {
+        // Create Sample data
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Sword USB`, `U01`, `50.00`, `20`, `USB`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`StarWars USB`, `U02`, `60.00`, `10`, `USB`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard USB`, `U03`, `45.00`, `50`, `USB`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Andrew USB`, `U04`, `339.00`, `1`, `USB`)";
+
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Andrew Gaming Computer`, `PC01`, `159339.00`, `1`, `PC`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Budget Gaming Computer`, `PC02`, `1000.00`, `50`, `PC`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Computer`, `PC03`, `2000.00`, `20`, `PC`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Gaming Laptop`, `PC04`, `4000.00`, `10`, `PC`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Work Laptop`, `PC05`, `500.00`, `40`, `PC`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Toaster`, `PC06`, `10.00`, `10`, `PC`)";
+
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`MLG Motherboard`, `M01`, `420.00`, `30`, `Motherboard`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Motherboard`, `M02`, `600.00`, `50`, `Motherboard`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Used Motherboard`, `M03`, `100.00`, `10`, `Motherboard`)";
+
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Space Invader Graphics Card`, `G01`, `1978.00`, `10`, `Graphics Card`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Graphics Card`, `G02`, `1500.00`, `30`, `Graphics Card`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`4K Graphics Card`, `G03`, `4000.00`, `40`, `Graphics Card`)";
+
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Mickey Mouse`, `A01`, `50.00`, `20`, `Accessories`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Gaming Mouse`, `A02`, `100.00`, `10`, `Accessories`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Mouse`, `A03`, `60.00`, `40`, `Accessories`)";
+        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Keyboard`, `A04`, `10.00`, `20`, `Accessories`)";
+
+
+
+
+
+        if(!$this->db->query($sql)) {
+            echo "ERROR: Could not able to execute $sql. " . $this->db->error;
         }
     }
 
