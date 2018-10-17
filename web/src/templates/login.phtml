@@ -1,6 +1,7 @@
 <!--This is the login page, user must enter username and password in order to login-->
 <?php include "header.phtml" ?>
 <!------------------------------>
+<h1>Welcome to Jis Tech</h1>
 <div id="logIn">
     <form method="post" >
         <? echo "<p class='errorMessage'>$error</p>"?>
@@ -14,8 +15,10 @@
                 <td><input type="password" name="userPassword" value="<?= $userPassword ?>"></td>
             </tr>
             <tr>
-                <td class="center"><input type="submit" value="Login" name="validateLogin"></td>
-                <td><input type="submit" value="Sign up" name="signUp"></td>
+                <td colspan="2" class="right"><input type="submit" value="Login" name="validateLogin"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="right">Don't have an account? <input type="submit" value="Register" name="signUp"></td>
             </tr>
         </table>
     </form>
