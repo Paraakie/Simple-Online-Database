@@ -113,29 +113,6 @@ class Model
 
             $this->createSampleProducts();
         }
-
-        $result = $this->db->query("SHOW TABLES LIKE 'transactions';");
-        if ($result->num_rows == 0) {
-            // table doesn't exist create it
-
-            $result = $this->db->query(
-                "CREATE TABLE `transactions` (
-                                          `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-                                          `accountID` int(8) unsigned NOT NULL,
-                                          `userID` int(8) unsigned NOT NULL,
-                                          `time` varchar(100) NOT NULL,
-                                          `amount` bigint NOT NULL,
-                                          `type` varchar(1) NOT NULL,
-                                          PRIMARY KEY (`id`)
-                                          );"
-            );
-
-            if (!$result) {
-                // handle appropriately
-                error_log("Failed creating table transactions", 0);
-                die($this->db->error);
-            }
-        }
     }
 
 
@@ -169,10 +146,6 @@ class Model
         $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Gaming Mouse`, `A02`, `100.00`, `10`, `Accessories`)";
         $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Mouse`, `A03`, `60.00`, `40`, `Accessories`)";
         $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Keyboard`, `A04`, `10.00`, `20`, `Accessories`)";
-
-
-
-
 
         if(!$this->db->query($sql)) {
             echo "ERROR: Could not able to execute $sql. " . $this->db->error;
