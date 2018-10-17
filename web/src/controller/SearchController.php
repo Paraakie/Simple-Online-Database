@@ -23,10 +23,8 @@ class SearchController extends Controller
 
     /**
      * Return the matching Items
-     *
-     * @param string $searchStr
      */
-    public function returnMatches(string $searchStr){
+    public function returnMatches(){
 
         // Array with names
         $a[] = "Anna";
@@ -61,12 +59,12 @@ class SearchController extends Controller
         $a[] = "Vicky";
 
         // get the q parameter from URL
-        $q = $searchStr;
+        $q = $_GET['search'];
 
         $hint = "";
 
         // lookup all hints from array if $q is different from ""
-        if ($q !== "") {
+        if ($q !== null) {
             $q = strtolower($q);
             $len=strlen($q);
             foreach($a as $name) {

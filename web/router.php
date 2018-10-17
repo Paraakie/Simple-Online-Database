@@ -86,7 +86,7 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/home/logout',
+        '/home/logout/',
         array(
             '_controller' => 'jis\a2\controller\HomeController::logout',
             'methods' => 'GET',
@@ -111,7 +111,7 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
-        '/search/:items',
+        '/search/find',
         array(
             '_controller' => 'jis\a2\controller\SearchController::returnMatches',
             'methods' => 'GET',
