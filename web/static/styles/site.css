@@ -21,7 +21,7 @@ h1 {
 }
 
 img {
-    position:absolute;
+    display:block;
     left: 0;
     top: 0;
 }
