@@ -61,7 +61,7 @@ class SearchController extends Controller
         $a[] = "Vicky";
 
         // get the q parameter from URL
-        $q = $_REQUEST("q");
+        $q = $searchStr;
 
         $hint = "";
 
