@@ -17,28 +17,36 @@ class UserAccountController extends Controller
     /**
      * @const this constant value is the min length of password.
      */
-    private const MIN_PASSWORD_LENGTH = 4;
+    private const MIN_PASSWORD_LENGTH = 7;
+    private const MAX_PASSWORD_LENGTH = 14;
 
     /**
      * Creates a new User Account if the user input is valid, otherwise returns an error
      * @param string $password The password for the new account
-     * @param string $name The name of the account
-     * @param string $email
+     * @param string $userName The name that the user uses to login
+     * @param string $nickName The name to call the user by
+     * @param string $email The users email
      * @return null|string If an error occurred the error message, otherwise null
      */
-    private function handleSignUp(string $password, string $name, string $email): ?string
+    private function handleSignUp(string $password, string $userName, string $nickName, string $email): ?string
     {
         //Error handling
-        if (strlen($password) < UserAccountController::MIN_PASSWORD_LENGTH) {
+        $passwordLength = strlen($password);
+        if ($passwordLength < UserAccountController::MIN_PASSWORD_LENGTH) {
             return 'Your password must be at least '
                 . UserAccountController::MIN_PASSWORD_LENGTH . ' characters long';
         }
+        if($passwordLength > UserAccountController::MAX_PASSWORD_LENGTH) {
+            return 'Your password cannot be longer than '
+                . UserAccountController::MIN_PASSWORD_LENGTH . ' characters long';
+        }
         $userAccount = new UserAccountModel();
-        if ($userAccount->loadByUserName($name) != null) {
+        if ($userAccount->loadByUserName($userName) != null) {
             return 'The account name is already in use';
         }
         //Information that user entered are correct, eligible to create a new user account
-        $userAccount->setUserName($name);
+        $userAccount->setUserName($userName);
+        $userAccount->setNickName($nickName);
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $userAccount->setPassword($passwordHash);
         $userAccount->setEmail($email);
@@ -55,18 +63,21 @@ class UserAccountController extends Controller
     public function signUp()
     {
         if (isset($_POST['signUp'])) {
-            $name = $_POST["userName"];
+            $nickName = $_POST["name"];
+            $userName = $_POST["userName"];
             $password = $_POST["userPassword"];
-            $password2 = $_POST["userPassword2"];
-            $error = $this->handleSignUp($password, $password2, $name);
+            $email = $_POST["email"];
+            $error = $this->handleSignUp($password, $userName, $nickName, $email);
             if ($error === null) {
                 $this->redirect("showHome");
             } else {
                 $view = new View('signUp');
                 $view->addData('error', $error);
-                $view->addData('userName', $name);
+                $view->addData('name', $nickName);
+                $view->addData('userName', $userName);
                 $view->addData('userPassword', $password);
-                $view->addData('userPassword2', $password2);
+                $view->addData('userPassword2', $_POST["userPassword2"]);
+                $view->addData('email', $email);
                 echo $view->render();
             }
         } else {
