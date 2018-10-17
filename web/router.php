@@ -86,7 +86,7 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/account/logout',
+        '/home/logout',
         array(
             '_controller' => 'jis\a2\controller\HomeController::logout',
             'methods' => 'GET',
