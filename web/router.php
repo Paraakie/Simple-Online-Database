@@ -100,11 +100,22 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/search',
+        '/search/',
         array(
             '_controller' => 'jis\a2\controller\SearchController::search',
             'methods' => 'GET',
             'name' => 'search'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/search?=items',
+        array(
+            '_controller' => 'jis\a2\controller\SearchController::returnMatches',
+            'methods' => 'GET',
+            'name' => 'matched'
         )
     )
 );
@@ -114,7 +125,7 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/browse',
+        '/browse/',
         array(
             '_controller' => 'jis\a2\controller\BrowseController::browse',
             'methods' => 'GET',
