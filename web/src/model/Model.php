@@ -47,6 +47,7 @@ class Model
             die($this->db->error);
         }
 
+        $needsToCreateSampleUser = false;
         $result = $this->db->query("SHOW TABLES LIKE 'user_accounts';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
@@ -66,8 +67,11 @@ class Model
                 error_log("Failed creating table user_accounts", 0);
                 die($this->db->error);
             }
+
+            $needsToCreateSampleUser = true;
         }
 
+        $needsToCreateSampleCategories = false;
         $result = $this->db->query("SHOW TABLES LIKE 'categories';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
@@ -85,8 +89,11 @@ class Model
                 error_log("Failed creating table categories", 0);
                 die($this->db->error);
             }
+
+            $needsToCreateSampleCategories = true;
         }
 
+        $needsToCreateSampleProducts = false;
         $result = $this->db->query("SHOW TABLES LIKE 'products';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
@@ -111,8 +118,31 @@ class Model
                 die($this->db->error);
             }
 
+            $needsToCreateSampleProducts = true;
+        }
+
+        // These need to be delayed to they can created models without the database being half initialed
+        if($needsToCreateSampleCategories) {
+            $this->createSampleCategories();
+        }
+        if($needsToCreateSampleProducts) {
             $this->createSampleProducts();
         }
+        if($needsToCreateSampleUser) {
+            $this->createSampleUser();
+        }
+    }
+
+    /**
+     * Create sample categories for testing
+     */
+    private function createSampleCategories(): void
+    {
+        CategoryModel::create('USB')->save();
+        CategoryModel::create('PC')->save();
+        CategoryModel::create('Motherboard')->save();
+        CategoryModel::create('Graphics Card')->save();
+        CategoryModel::create('Accessories')->save();
     }
 
 
@@ -122,34 +152,44 @@ class Model
     public function createSampleProducts(): void
     {
         // Create Sample data
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Sword USB`, `U01`, `50.00`, `20`, `USB`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`StarWars USB`, `U02`, `60.00`, `10`, `USB`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard USB`, `U03`, `45.00`, `50`, `USB`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Andrew USB`, `U04`, `339.00`, `1`, `USB`)";
+        $usb = CategoryModel::loadByName('USB')->getId();
+        ProductModel::create('Sword USB', 'U01', 5000, 20, $usb)->save();
+        ProductModel::create('StarWars USB', 'U02', 6000, 10, $usb)->save();
+        ProductModel::create('Standard USB', 'U03', 4500, 50, $usb)->save();
+        ProductModel::create('Andrew USB', 'U04', 33900, 1, $usb)->save();
 
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Andrew Gaming Computer`, `PC01`, `159339.00`, `1`, `PC`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Budget Gaming Computer`, `PC02`, `1000.00`, `50`, `PC`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Computer`, `PC03`, `2000.00`, `20`, `PC`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Gaming Laptop`, `PC04`, `4000.00`, `10`, `PC`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Work Laptop`, `PC05`, `500.00`, `40`, `PC`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Toaster`, `PC06`, `10.00`, `10`, `PC`)";
+        $pc = CategoryModel::loadByName('PC')->getId();
+        ProductModel::create('Andrew Gaming Computer', 'PC01', 15933900, 1, $pc)->save();
+        ProductModel::create('Budget Gaming Computer', 'PC02', 100000, 50, $pc)->save();
+        ProductModel::create('Standard Computer', 'PC03', 200000, 20, $pc)->save();
+        ProductModel::create('Gaming Laptop', 'PC04', 400000, 10, $pc)->save();
+        ProductModel::create('Work Laptop', 'PC05', 50000, 40, $pc)->save();
+        ProductModel::create('Toaster', 'PC06', 1000, 10, $pc)->save();
 
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`MLG Motherboard`, `M01`, `420.00`, `30`, `Motherboard`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Motherboard`, `M02`, `600.00`, `50`, `Motherboard`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Used Motherboard`, `M03`, `100.00`, `10`, `Motherboard`)";
+        $mb = CategoryModel::loadByName('Motherboard')->getId();
+        ProductModel::create('MLG Motherboard', 'M01', 42000, 30, $mb)->save();
+        ProductModel::create('Standard Motherboard', 'M02', 60000, 50, $mb)->save();
+        ProductModel::create('Used Motherboard', 'M03', 10000, 10, $mb)->save();
 
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Space Invader Graphics Card`, `G01`, `1978.00`, `10`, `Graphics Card`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Graphics Card`, `G02`, `1500.00`, `30`, `Graphics Card`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`4K Graphics Card`, `G03`, `4000.00`, `40`, `Graphics Card`)";
+        $gpu = CategoryModel::loadByName('Graphics Card')->getId();
+        ProductModel::create('Space Invader Graphics Card', 'G01', 197800, 10, $gpu)->save();
+        ProductModel::create('Standard Graphics Card', 'G02', 150000, 30, $gpu)->save();
+        ProductModel::create('4K Graphics Card', 'G03', 400000, 40, $gpu)->save();
 
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Mickey Mouse`, `A01`, `50.00`, `20`, `Accessories`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Gaming Mouse`, `A02`, `100.00`, `10`, `Accessories`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Standard Mouse`, `A03`, `60.00`, `40`, `Accessories`)";
-        $sql = "INSERT INTO products (`name`, stockKeepingUnit, cost, quantity, categoryID) VALUES (`Keyboard`, `A04`, `10.00`, `20`, `Accessories`)";
+        $accessories = CategoryModel::loadByName('Accessories')->getId();
+        ProductModel::create('Mickey Mouse', 'A01', 5000, 20, $accessories)->save();
+        ProductModel::create('Gaming Mouse', 'A02', 10000, 10, $accessories)->save();
+        ProductModel::create('Standard Mouse', 'A03', 6000, 40, $accessories)->save();
+        ProductModel::create('Keyboard', 'A04', 1000, 20, $accessories)->save();
+    }
 
-        if(!$this->db->query($sql)) {
-            echo "ERROR: Could not able to execute $sql. " . $this->db->error;
-        }
+    /**
+     * Create a sample user for testing
+     */
+    private function createSampleUser(): void
+    {
+        UserAccountModel::create("Tim Taylor", "TheToolman",
+            password_hash("TheToolman", PASSWORD_DEFAULT), "TheToolman@gmail.com")->save();
     }
 
     /**

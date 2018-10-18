@@ -84,26 +84,11 @@ class ProductModel extends Model
     }
 
     /**
-     * @return string the category e.g. GPU or CPU
+     * @return CategoryModel the category e.g. GPU or CPU
      */
-    public function getCategory(): string
+    public function getCategory(): CategoryModel
     {
-        if (!$stm = $this->db->prepare(
-            "SELECT `name` FROM `categories` WHERE `id`=?;"
-        )) {
-            die($this->db->error);
-        }
-        $stm->bind_param("i", $this->categoryID);
-        $stm->bind_result($name);
-        $result = $stm->fetch();
-        $stm->close();
-        if (!$result) {
-            die($this->db->error);
-        }
-        if(!$result = $stm->execute()) {
-            die($this->db->error);
-        }
-        return $name;
+        return CategoryModel::loadById($this->categoryID);
     }
 
     public function getCategoryID(): int
@@ -202,5 +187,17 @@ class ProductModel extends Model
         }
 
         return $this;
+    }
+
+    static public function create(string $name, string $stockKeepingUnit, int $cost, int $quantity,
+        int $categoryID): ProductModel
+    {
+        $product = new ProductModel();
+        $product->name = $name;
+        $product->stockKeepingUnit = $stockKeepingUnit;
+        $product->cost = $cost;
+        $product->quantity = $quantity;
+        $product->categoryID = $categoryID;
+        return $product;
     }
 }
