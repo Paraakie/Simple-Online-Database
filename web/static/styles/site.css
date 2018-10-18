@@ -103,16 +103,21 @@ a {
     margin-right: fill;
 }
 
+
+
 /**
 *   Menu bar
 */
+
+hr{
+    border-color: #ffa500;
+}
 
 .topmenu{
     width:100%;
 }
 
 .topmenu a{
-    float:left;
     padding-left:20px;
     padding-right:20px;
     width: 20%;
@@ -122,4 +127,67 @@ a {
 
 .topmenu a:hover{
     background-color:rgba(255,165,0,0.5);
+}
+
+.browseProduct{
+    width:100%;
+}
+
+/**
+ *  Side bar for browse page
+ */
+
+.sideBar{
+    display:inline-block;
+    float: left;
+    width: 20%;
+    border-style: solid;
+    margin-top:4%;
+}
+
+.sideBar h1{
+    font-size: 2em;
+    text-align: center;
+    margin-top: 0;
+}
+
+.sideBar input[type="checkbox"]{
+    margin-left:7%;
+    margin-bottom: 5%;
+    width: 20px;
+    height: 20px;
+}
+
+.sideBar input[type="radio"]{
+    margin-left:7%;
+    margin-bottom: 5%;
+    width: 20px;
+    height: 20px;
+}
+
+input[type="checkbox"] + label{
+    font-size:25px;
+}
+
+input[type="radio"] + label{
+    font-size:25px;
+}
+
+/**
+ * Products table
+ */
+
+.ProductsTable{
+    display: inline-block;
+    float:right;
+    width: 70%;
+    border-style: solid;
+    margin-top:4%;
+    margin-right: 5%;
+}
+
+.ProductsTable h1{
+    font-size: 2em;
+    text-align: center;
+    margin-top: 0;
 }
