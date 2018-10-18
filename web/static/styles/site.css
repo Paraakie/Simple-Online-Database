@@ -202,7 +202,7 @@ input[type="radio"] + label{
     border:1px solid;
 }
 
-#ProductsTable th , td{
+#ProductsTable th , #ProductsTable td{
     border:1px solid;
     text-align: left;
     padding-top:15px;
@@ -210,9 +210,18 @@ input[type="radio"] + label{
     padding-right:100px;
 }
 
-.search { position: relative; }
-.search label { position: relative; }
-.search input { text-indent: 25px; }
+.search {
+    position: relative;
+}
+
+.search label {
+    position: relative;
+}
+
+.search input {
+    text-indent: 25px;
+}
+
 .search .fa-search {
     position: absolute;
     top: 2px;
