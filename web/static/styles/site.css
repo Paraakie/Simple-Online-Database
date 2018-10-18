@@ -83,6 +83,7 @@ a {
 }
 
 #site-footer, #page-wrap:after {
+    float:bottom;
     height: 10px;
 }
 
@@ -180,7 +181,7 @@ input[type="radio"] + label{
 
 #ProductsTable{
     display: inline-block;
-    float:right;
+    margin-left:23%;
     width: 70%;
     border-style: solid;
     margin-top:4%;
@@ -197,7 +198,7 @@ input[type="radio"] + label{
 #ProductsTable table{
     text-align: center;
     margin:auto;
-    font-size: 1.5em;
+    font-size: 1em;
     border:1px solid;
 }
 

@@ -54,10 +54,29 @@ class ProductListModel extends Model
     /**
      * Gets all products
      */
-    public function findAllProducts(){
+    public function findAllProducts()
+    {
 
-        if(!$stm = $this->db->prepare("SELECT * FROM products")) {
+        if (!$stm = $this->db->prepare("SELECT id FROM products")) {
             die($this->db->error);
+        }
+
+        if (!$stm->execute()) {
+            $stm->close();
+            die($this->db->error);
+        }
+        $result = $stm->get_result();
+        if (!$result) {
+            $stm->close();
+            die($this->db->error);
+        }
+        $ids = array_column($result->fetch_all(), 0);
+        $stm->close();
+
+        foreach ($ids as $id) {
+            // Use a generator to save on memory/resources
+            // load products from DB one at a time only when required
+            yield (new ProductModel())->load($id);
         }
 
     }

@@ -9,6 +9,7 @@
 namespace jis\a2\controller;
 
 
+use jis\a2\model\ProductListModel;
 use jis\a2\view\View;
 
 class BrowseController
@@ -17,7 +18,9 @@ class BrowseController
      * Display the Browse page
      */
     public function browse(){
+        $products = (new ProductListModel()) -> findAllProducts();
         $view = new View('browse');
+        $view->addData("products", $products);
         echo $view->render();
     }
 

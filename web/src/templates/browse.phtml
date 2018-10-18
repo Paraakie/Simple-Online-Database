@@ -24,8 +24,20 @@
             <th>Cost</th>
             <th>Stock Qty</th>
         </tr>
-        <tr>
-        </tr>
+        <span id="products">
+        <?
+            foreach($products as $product ){
+                echo "
+                    <tr>
+                        <td>{$product->getStockKeepingUnit()}</td>
+                        <td>{$product->getName()}</td>
+                        <td>\${$product->getCost()}</td>
+                        <td>{$product->getQuantity()}</td>
+                    </tr>
+                ";
+            }
+        ?>
+        </span>
     </table>
 </div>
 <!------------------------------>
