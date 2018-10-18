@@ -60,17 +60,14 @@ class SearchController extends Controller
         $a[] = "Wenche";
         $a[] = "Vicky";
 
-        // get the q parameter from URL
-        $q = $searchStr;
-
         $hint = "";
 
         // lookup all hints from array if $q is different from ""
-        if ($q !== "") {
-            $q = strtolower($q);
-            $len=strlen($q);
+        if ($$searchStr !== "") {
+            $$searchStr = strtolower($$searchStr);
+            $len=strlen($searchStr);
             foreach($a as $name) {
-                if (stristr($q, substr($name, 0, $len))) {
+                if (stristr($searchStr, substr($name, 0, $len))) {
                     if ($hint === "") {
                         $hint = $name;
                     } else {
