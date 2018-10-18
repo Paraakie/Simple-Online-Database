@@ -8,10 +8,10 @@ searcher.currentRequest = null;
 searcher.lastCompletedRequestIndex = 0;
 
 /**
- * Finds products with a similar name asynchronously and displays them.
- * @param input str The name to search for in the products table
+ * Finds products using the given server request asynchronously and displays them.
+ * @param input str The server request.
  */
-searcher.search = function(input) {
+searcher.search = function(requestString) {
     let xmlhttp = new XMLHttpRequest();
     const requestIndex = this.requestIndex + 1;
     this.requestIndex = requestIndex;
@@ -20,7 +20,7 @@ searcher.search = function(input) {
         if (this.readyState === 4 && this.status === 200) {
             if(requestIndex > searcher.lastCompletedRequestIndex) {
                 searcher.lastCompletedRequestIndex = requestIndex;
-                document.getElementById("txtHint").innerHTML = this.responseText;
+                document.getElementsByClassName("productsTableBody")[0].innerHTML = this.responseText;
             }
             if(xmlhttp === searcher.currentRequest) {
                 searcher.currentRequest = null;
@@ -29,7 +29,7 @@ searcher.search = function(input) {
             }
         }
     };
-    xmlhttp.open("GET", "find?search=" + encodeURIComponent(input), true);
+    xmlhttp.open("GET", requestString, true);
     xmlhttp.send();
     if(searcher.lastRequest === null) {
         searcher.lastRequest = searcher.currentRequest;
@@ -38,4 +38,12 @@ searcher.search = function(input) {
         searcher.currentRequest.abort();
         searcher.currentRequest = xmlhttp;
     }
+};
+
+/**
+ * Finds products with a similar name asynchronously and displays them.
+ * @param input str The name to search for in the products table
+ */
+searcher.searchByName = function(input) {
+    this.search("find?search=" + encodeURIComponent(input));
 };
