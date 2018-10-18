@@ -8,7 +8,11 @@
     <p>Start typing and we'll suggest products for you!</p>
 
     <form action="">
-        Products: <input type="text" id="txt1" onkeyup="showHint(this.value)">
+        <label for="txt1">Search: </label>
+        <span class="search">
+            <span class="fa fa-search"></span>
+            <input type="search" id="txt1" onkeyup="showHint(this.value)">
+        </span>
     </form>
     <p>Suggestions: <span id="txtHint"></span></p>
 </div>

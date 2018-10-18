@@ -3,11 +3,6 @@
  * @param input str
  */
 function showHint(input) {
-    if (input.length === 0) {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    }
-
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {

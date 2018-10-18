@@ -16,8 +16,8 @@ class SearchController extends Controller
     /**
      * Display the Search page
      */
-    public function search(){
-
+    public function search()
+    {
         $view = new View('search');
         echo $view->render();
     }
@@ -25,7 +25,8 @@ class SearchController extends Controller
     /**
      * Return the matching Items
      */
-    public function returnMatches(){
+    public function returnMatches()
+    {
         // get the q parameter from URL
         $q = $_GET['search'];
         if($q === null) {
