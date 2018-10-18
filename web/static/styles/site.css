@@ -139,6 +139,7 @@ hr{
 
 .sideBar{
     display:inline-block;
+    position:fixed;
     float: left;
     width: 20%;
     border-style: solid;
@@ -189,5 +190,22 @@ input[type="radio"] + label{
 .ProductsTable h1{
     font-size: 2em;
     text-align: center;
-    margin-top: 0;
+    margin:0;
+    padding-bottom: 3%;
 }
+
+.ProductsTable table{
+    text-align: center;
+    margin:auto;
+    font-size: 1.5em;
+    border:1px solid;
+}
+
+.ProductsTable th , td{
+    border:1px solid;
+    text-align: left;
+    padding-top:15px;
+    padding-bottom: 15px;
+    padding-right:100px;
+}
+
