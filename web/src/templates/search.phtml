@@ -1,7 +1,12 @@
-<!-- This Screen allows the user to search for any available item ->
+<!-- This Screen allows the user to search for any available item -->
 
 <?php include "header.phtml" ?>
 <?php include "menu.phtml"?>
+<script>
+    window.onload = function () {
+        searcher.search("");
+    };
+</script>
 <!------------------------------>
 <div class = "margin_35pc">
     <br>
@@ -12,7 +17,7 @@
             <input type="search" id="txt1" onkeyup="searcher.search(this.value)">
         </span>
     </form>
-    <table class="ProductsTableForSearch">
+    <table class="ProductsTableForSearch with-currency" lang="en-NZ">
         <thead>
             <tr>
                 <th>SKU</th>

@@ -17,27 +17,27 @@
 </div>
 <div id="ProductsTable">
     <h1>Available Products</h1>
-    <table id="product">
+    <table id="product" class="with-currency" lang="en-NZ">
         <tr>
             <th>SKU</th>
             <th>Name</th>
             <th>Cost</th>
             <th>Stock Qty</th>
         </tr>
-        <span id="products">
+        <tbody id="products">
         <?
             foreach($products as $product ){
                 echo "
                     <tr>
                         <td>{$product->getStockKeepingUnit()}</td>
                         <td>{$product->getName()}</td>
-                        <td>\${$product->getCost()}</td>
+                        <td>{$product->getCost()}</td>
                         <td>{$product->getQuantity()}</td>
                     </tr>
                 ";
             }
         ?>
-        </span>
+        </tbody>
     </table>
 </div>
 <!------------------------------>
