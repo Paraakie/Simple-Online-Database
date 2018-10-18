@@ -21,17 +21,20 @@
         <tr>
             <th>SKU</th>
             <th>Name</th>
+            <th>Category</th>
             <th>Cost</th>
             <th>Stock Qty</th>
         </tr>
         <tbody id="products">
         <?
             foreach($products as $product ){
+                $cost = $product->getCost() / 100;
                 echo "
                     <tr>
                         <td>{$product->getStockKeepingUnit()}</td>
                         <td>{$product->getName()}</td>
-                        <td>{$product->getCost()}</td>
+                        <td>{$product->getCategory()->getName()}</td>
+                        <td>{$cost}</td>
                         <td>{$product->getQuantity()}</td>
                     </tr>
                 ";
