@@ -48,6 +48,16 @@ a {
     text-align: center;
 }
 
+.center table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .right{
     text-align: right;
 }
@@ -64,6 +74,10 @@ a {
 .margin_35pc {
     margin-left: 35%;
     margin-right: fill;
+}
+
+.small-margin {
+    margin: 1%;
 }
 
 
@@ -238,7 +252,7 @@ input[type="radio"] + label{
 .ProductsTableForSearch table, .ProductsTableForSearch th, .ProductsTableForSearch td{
     border: 1px solid;
     padding: 2px 10px 2px 10px;
-
+    position: relative;
 }
 
 .with-currency[lang="en-NZ"] td:nth-child(4)::before {
