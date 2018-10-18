@@ -2,10 +2,14 @@
  * Selectors
  */
 
-* { /* Make footer stick to the bottom of the page,from https://css-tricks.com/snippets/css/sticky-footer/ */
+/* Make footer stick to the bottom of the page,from https://css-tricks.com/snippets/css/sticky-footer/ */
+* {
     margin: 0;
 }
 
+/**
+ * Coloring the page
+ */
 html, body {
     height: 100%;
     background-color: #222222;
@@ -17,16 +21,6 @@ h1 {
     text-align: center;
     margin-top: 80px;
     margin-bottom: 4%;
-}
-
-img {
-    display:block;
-    left: 0;
-    top: 0;
-}
-
-table td {
-    text-align:left;
 }
 
 a {
@@ -104,7 +98,9 @@ a {
     font-size: larger;
 }
 
-
+#browseProduct{
+    width:100%;
+}
 
 /**
 *   Menu bar
@@ -130,15 +126,11 @@ hr{
     background-color:rgba(255,165,0,0.5);
 }
 
-.browseProduct{
-    width:100%;
-}
-
 /**
  *  Side bar for browse page
  */
 
-.sideBar{
+#sideBar{
     display:inline-block;
     float: left;
     width: 20%;
@@ -146,20 +138,20 @@ hr{
     margin-top:4%;
 }
 
-.sideBar h1{
+#sideBar h1{
     font-size: 2em;
     text-align: center;
     margin-top: 0;
 }
 
-.sideBar input[type="checkbox"]{
+#sideBar input[type="checkbox"]{
     margin-left:7%;
     margin-bottom: 5%;
     width: 20px;
     height: 20px;
 }
 
-.sideBar input[type="radio"]{
+#sideBar input[type="radio"]{
     margin-left:7%;
     margin-bottom: 5%;
     width: 20px;
@@ -178,7 +170,7 @@ input[type="radio"] + label{
  * Products table
  */
 
-.ProductsTable{
+#ProductsTable{
     display: inline-block;
     float:right;
     width: 70%;
@@ -187,7 +179,7 @@ input[type="radio"] + label{
     margin-right: 5%;
 }
 
-.ProductsTable h1{
+#ProductsTable h1{
     font-size: 2em;
     text-align: center;
     margin-top: 0;
