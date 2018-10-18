@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function showHome() {
         $view = new View("userHome");
-        echo $view->render();
+        echo $view->render(); // Needs to pass $userName
     }
 
     /**

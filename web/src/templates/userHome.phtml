@@ -1,33 +1,21 @@
-<!--This is the user home page. A greeting will be shown depends on the time.date will be shown
-    All functionalities will be shown on this page including
-    - Create/Delete new bank account
-    - Withdrawal/Deposit/Transfer
-    - View transactions of one account or view all transactions that user made
-    - Logout
-    -->
 <?php include "header.phtml" ?>
 <?php include "menu.phtml"?>
-<h1>Welcome</h1>
+<!------------------------------>
 <form id = "productTable" method="get" action="logout">
     <?
     $date = date("i-h-s");
     echo date("l, jS \of F ");
     ?>
 </form>
-<div id = "welcomeMessage">
 
-    <? $hours = Date('G');
-        if($hours >= 6 && $hours < 12){
-            echo "<p>Good Morning</p>";
-        } else if($hours >= 12 && $hours < 18){
-            echo "<p>Good Afternoon</p>";
-        } else {
-            echo "<p>Good Evening</p>";
-        };
-    ?>
-
+<?echo("<h1>Welcome $userName</h1>")?>
+<div id="usageInstructions">
+    <p class="margin_35pc">..to  JIS Tech! Here we sell you the best tech products in the world!</p>
+    <p class="margin_35pc">Looking for a specific item? Click Search!</p>
+    <p class="margin_35pc">Once you start typing we'll show you all matching products!</p>
+    <p class="margin_35pc">Not sure what to buy yet? </p>
+    <p class="margin_35pc">Click browse and find the ultimate product for yourself!</p>
 </div>
-
+<!------------------------------>
 <?php include "footer.phtml" ?>
-
 <?= $scripts ?>
