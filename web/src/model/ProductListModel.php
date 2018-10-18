@@ -29,7 +29,8 @@ class ProductListModel extends Model
         if(!$stm = $this->db->prepare("SELECT `id` FROM products WHERE `name` LIKE ? LIMIT ?")) {
             die($this->db->error);
         }
-        $stm->bind_param("si", $name, $maxNumber);
+        $pattern = '%' . $name . '%';
+        $stm->bind_param("si", $pattern, $maxNumber);
 
         if(!$stm->execute()) {
             $stm->close();
