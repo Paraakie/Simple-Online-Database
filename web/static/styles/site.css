@@ -73,12 +73,6 @@ a {
     height: 10px;
 }
 
-#productTable {
-    position:fixed;
-    top:0;
-    right:0;
-}
-
 #logIn form {
     text-align:center;
     padding-top:80px;
@@ -170,7 +164,7 @@ input[type="radio"] + label{
  * Products table
  */
 
-#ProductsTable{
+.ProductsTable{
     display: inline-block;
     float:right;
     width: 70%;
@@ -179,8 +173,18 @@ input[type="radio"] + label{
     margin-right: 5%;
 }
 
-#ProductsTable h1{
+.ProductsTable h1{
     font-size: 2em;
     text-align: center;
     margin-top: 0;
+}
+
+
+/**
+ * Product Table ForSearch
+ */
+.ProductsTableForSearch table, .ProductsTableForSearch th, .ProductsTableForSearch td{
+    border: 1px solid;
+    padding: 2px 10px 2px 10px;
+
 }

@@ -38,7 +38,11 @@ class SearchController extends Controller
             while (true) {
                 $product = $products->current();
                 $products->next();
+                //echo $product->getStockKeepingUnit();
                 echo $product->getName();
+                //echo $product->getCategoryID();
+                //echo $product->getCost();
+                //echo $product->getQuantiity();
                 if($products->valid()) {
                     echo ", ";
                 } else {
