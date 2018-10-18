@@ -200,6 +200,8 @@ input[type="radio"] + label{
     margin:auto;
     font-size: 1em;
     border:1px solid;
+    padding-left:2%;
+    padding-right:2%;
 }
 
 #ProductsTable th , #ProductsTable td{
