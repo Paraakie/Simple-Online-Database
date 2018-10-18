@@ -50,4 +50,16 @@ class ProductListModel extends Model
             yield (new ProductModel())->load($id);
         }
     }
+
+    /**
+     * Gets all products
+     */
+    public function findAllProducts(){
+
+        if(!$stm = $this->db->prepare("SELECT * FROM products")) {
+            die($this->db->error);
+        }
+
+    }
+
 }

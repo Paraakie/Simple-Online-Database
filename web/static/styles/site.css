@@ -28,6 +28,19 @@ a {
 }
 
 /**
+ * top logo and date
+ */
+#logo{
+    width: 100%;
+}
+
+#logo label{
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+/**
  * Classes
  * for multiple use, generic names
  */
@@ -165,7 +178,7 @@ input[type="radio"] + label{
  * Products table
  */
 
-.ProductsTable{
+#ProductsTable{
     display: inline-block;
     float:right;
     width: 70%;
@@ -174,21 +187,21 @@ input[type="radio"] + label{
     margin-right: 5%;
 }
 
-.ProductsTable h1{
+#ProductsTable h1{
     font-size: 2em;
     text-align: center;
     margin:0;
     padding-bottom: 3%;
 }
 
-.ProductsTable table{
+#ProductsTable table{
     text-align: center;
     margin:auto;
     font-size: 1.5em;
     border:1px solid;
 }
 
-.ProductsTable th , td{
+#ProductsTable th , #ProductsTable td{
     border:1px solid;
     text-align: left;
     padding-top:15px;
@@ -196,9 +209,18 @@ input[type="radio"] + label{
     padding-right:100px;
 }
 
-.search { position: relative; }
-.search label { position: relative; }
-.search input { text-indent: 25px; }
+.search {
+    position: relative;
+}
+
+.search label {
+    position: relative;
+}
+
+.search input {
+    text-indent: 25px;
+}
+
 .search .fa-search {
     position: absolute;
     top: 2px;
