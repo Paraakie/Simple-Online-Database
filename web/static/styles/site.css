@@ -28,6 +28,19 @@ a {
 }
 
 /**
+ * top logo and date
+ */
+#logo{
+    width: 100%;
+}
+
+#logo label{
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+/**
  * Classes
  * for multiple use, generic names
  */
@@ -73,11 +86,6 @@ a {
     height: 10px;
 }
 
-#productTable {
-    position:fixed;
-    top:0;
-    right:0;
-}
 
 #logIn form {
     text-align:center;
@@ -187,14 +195,14 @@ input[type="radio"] + label{
     padding-bottom: 3%;
 }
 
-.ProductsTable table{
+#ProductsTable table{
     text-align: center;
     margin:auto;
     font-size: 1.5em;
     border:1px solid;
 }
 
-.ProductsTable th , td{
+#ProductsTable th , td{
     border:1px solid;
     text-align: left;
     padding-top:15px;
