@@ -3,10 +3,8 @@
 <?php include "header.phtml" ?>
 <?php include "menu.phtml"?>
 <!------------------------------>
-<script src="/static/scripts/searchProducts.js"></script>
 <div class = "margin_35pc">
-    <p>Start typing and we'll suggest products for you!</p>
-
+    <br>
     <form action="">
         <label for="txt1">Search: </label>
         <span class="search">
@@ -14,6 +12,30 @@
             <input type="search" id="txt1" onkeyup="searcher.search(this.value)">
         </span>
     </form>
+    <table class="ProductsTableForSearch">
+        <thead>
+            <tr>
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Cost</th>
+                <th>Stock Qty</th>
+            </tr>
+        </thead>
+        <?php
+        for($i=0; $i < 4; $i++){
+            echo("
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            ");
+        }
+        ?>
+    </table>
     <p>Suggestions: <span id="txtHint"></span></p>
 </div>
 <br>
