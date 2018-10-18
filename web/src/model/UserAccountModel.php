@@ -118,7 +118,7 @@ class UserAccountModel extends Model
         $result = $selectAccountByName->fetch();
         $selectAccountByName->close();
         if ($result) {
-            $this->$nickName = $nickName;
+            $this->nickName = $nickName;
             $this->userName = $userName;
             $this->password = $password;
             $this->email = $email;
@@ -238,6 +238,16 @@ class UserAccountModel extends Model
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    static public function create(string $nickName, string $userName, string $password, string $email): UserAccountModel
+    {
+        $user = new UserAccountModel();
+        $user->nickName = $nickName;
+        $user->userName = $userName;
+        $user->password = $password;
+        $user->email = $email;
+        return $user;
     }
 
     /**

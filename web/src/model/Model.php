@@ -47,6 +47,7 @@ class Model
             die($this->db->error);
         }
 
+        $needsToCreateSampleUser = false;
         $result = $this->db->query("SHOW TABLES LIKE 'user_accounts';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
@@ -66,8 +67,11 @@ class Model
                 error_log("Failed creating table user_accounts", 0);
                 die($this->db->error);
             }
+
+            $needsToCreateSampleUser = true;
         }
 
+        $needsToCreateSampleCategories = false;
         $result = $this->db->query("SHOW TABLES LIKE 'categories';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
@@ -85,8 +89,11 @@ class Model
                 error_log("Failed creating table categories", 0);
                 die($this->db->error);
             }
+
+            $needsToCreateSampleCategories = true;
         }
 
+        $needsToCreateSampleProducts = false;
         $result = $this->db->query("SHOW TABLES LIKE 'products';");
         if ($result->num_rows == 0) {
             // table doesn't exist create it
@@ -110,30 +117,79 @@ class Model
                 error_log("Failed creating table products", 0);
                 die($this->db->error);
             }
+
+            $needsToCreateSampleProducts = true;
         }
 
-        $result = $this->db->query("SHOW TABLES LIKE 'transactions';");
-        if ($result->num_rows == 0) {
-            // table doesn't exist create it
-
-            $result = $this->db->query(
-                "CREATE TABLE `transactions` (
-                                          `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-                                          `accountID` int(8) unsigned NOT NULL,
-                                          `userID` int(8) unsigned NOT NULL,
-                                          `time` varchar(100) NOT NULL,
-                                          `amount` bigint NOT NULL,
-                                          `type` varchar(1) NOT NULL,
-                                          PRIMARY KEY (`id`)
-                                          );"
-            );
-
-            if (!$result) {
-                // handle appropriately
-                error_log("Failed creating table transactions", 0);
-                die($this->db->error);
-            }
+        // These need to be delayed to they can created models without the database being half initialed
+        if($needsToCreateSampleCategories) {
+            $this->createSampleCategories();
         }
+        if($needsToCreateSampleProducts) {
+            $this->createSampleProducts();
+        }
+        if($needsToCreateSampleUser) {
+            $this->createSampleUser();
+        }
+    }
+
+    /**
+     * Create sample categories for testing
+     */
+    private function createSampleCategories(): void
+    {
+        CategoryModel::create('USB')->save();
+        CategoryModel::create('PC')->save();
+        CategoryModel::create('Motherboard')->save();
+        CategoryModel::create('Graphics Card')->save();
+        CategoryModel::create('Accessories')->save();
+    }
+
+
+    /**
+     * Create Sample Products for testing
+     */
+    public function createSampleProducts(): void
+    {
+        // Create Sample data
+        $usb = CategoryModel::loadByName('USB')->getId();
+        ProductModel::create('Sword USB', 'U01', 5000, 20, $usb)->save();
+        ProductModel::create('StarWars USB', 'U02', 6000, 10, $usb)->save();
+        ProductModel::create('Standard USB', 'U03', 4500, 50, $usb)->save();
+        ProductModel::create('Andrew USB', 'U04', 33900, 1, $usb)->save();
+
+        $pc = CategoryModel::loadByName('PC')->getId();
+        ProductModel::create('Andrew Gaming Computer', 'PC01', 15933900, 1, $pc)->save();
+        ProductModel::create('Budget Gaming Computer', 'PC02', 100000, 50, $pc)->save();
+        ProductModel::create('Standard Computer', 'PC03', 200000, 20, $pc)->save();
+        ProductModel::create('Gaming Laptop', 'PC04', 400000, 10, $pc)->save();
+        ProductModel::create('Work Laptop', 'PC05', 50000, 40, $pc)->save();
+        ProductModel::create('Toaster', 'PC06', 1000, 10, $pc)->save();
+
+        $mb = CategoryModel::loadByName('Motherboard')->getId();
+        ProductModel::create('MLG Motherboard', 'M01', 42000, 30, $mb)->save();
+        ProductModel::create('Standard Motherboard', 'M02', 60000, 50, $mb)->save();
+        ProductModel::create('Used Motherboard', 'M03', 10000, 10, $mb)->save();
+
+        $gpu = CategoryModel::loadByName('Graphics Card')->getId();
+        ProductModel::create('Space Invader Graphics Card', 'G01', 197800, 10, $gpu)->save();
+        ProductModel::create('Standard Graphics Card', 'G02', 150000, 30, $gpu)->save();
+        ProductModel::create('4K Graphics Card', 'G03', 400000, 40, $gpu)->save();
+
+        $accessories = CategoryModel::loadByName('Accessories')->getId();
+        ProductModel::create('Mickey Mouse', 'A01', 5000, 20, $accessories)->save();
+        ProductModel::create('Gaming Mouse', 'A02', 10000, 10, $accessories)->save();
+        ProductModel::create('Standard Mouse', 'A03', 6000, 40, $accessories)->save();
+        ProductModel::create('Keyboard', 'A04', 1000, 20, $accessories)->save();
+    }
+
+    /**
+     * Create a sample user for testing
+     */
+    private function createSampleUser(): void
+    {
+        UserAccountModel::create("Tim Taylor", "TheToolman",
+            password_hash("TheToolman", PASSWORD_DEFAULT), "TheToolman@gmail.com")->save();
     }
 
     /**
