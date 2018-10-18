@@ -132,8 +132,9 @@ class UserAccountController extends Controller
 
     /**
      * check a user name is exist or not
+     * @param string $name The users userName
      */
-    public function checkUserExist($name){
+    public function checkUserExist(string $name){
         $userAccount = new UserAccountModel();
         if($userAccount -> loadByUserName($name) != null){
             echo "user name $name already exist !";
@@ -159,5 +160,14 @@ class UserAccountController extends Controller
         }
     }
 
-
+    /**
+     *  Logout Action
+     */
+    public function logout()
+    {
+        //Deleting session
+        session_start();
+        session_destroy();
+        $this->redirect('login');
+    }
 }

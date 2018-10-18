@@ -7,7 +7,7 @@ use PHPRouter\Route;
 $collection = new RouteCollection();
 
 /**
- * Redirects to log-in or showAccounts when address isn't specified
+ * Redirects to log-in or Home when address isn't specified
  */
 $collection->attachRoute(
     new Route(
@@ -86,9 +86,9 @@ $collection->attachRoute(
  */
 $collection->attachRoute(
     new Route(
-        '/home/logout',
+        '/home/logout/',
         array(
-            '_controller' => 'jis\a2\controller\HomeController::logout',
+            '_controller' => 'jis\a2\controller\UserAccountController::logout',
             'methods' => 'GET',
             'name' => 'logout'
         )
@@ -111,7 +111,7 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
-        '/search/:items',
+        '/search/find',
         array(
             '_controller' => 'jis\a2\controller\SearchController::returnMatches',
             'methods' => 'GET',

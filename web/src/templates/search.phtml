@@ -3,13 +3,16 @@
 <?php include "header.phtml" ?>
 <?php include "menu.phtml"?>
 <!------------------------------>
-<?php include "menu.phtml" ?>
 <script src="/static/scripts/searchProducts.js"></script>
-<div id = "search_page">
+<div class = "margin_35pc">
     <p>Start typing and we'll suggest products for you!</p>
 
     <form action="">
-        Products: <input type="text" id="txt1" onkeyup="showHint(this.value)">
+        <label for="txt1">Search: </label>
+        <span class="search">
+            <span class="fa fa-search"></span>
+            <input type="search" id="txt1" onkeyup="showHint(this.value)">
+        </span>
     </form>
     <p>Suggestions: <span id="txtHint"></span></p>
 </div>

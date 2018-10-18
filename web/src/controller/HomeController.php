@@ -30,18 +30,12 @@ class HomeController extends Controller
     }
 
     public function showHome() {
+        $user = UserAccountController::getCurrentUser();
+        if($user === null) {
+            return;
+        }
         $view = new View("userHome");
+        $view->addData("userName", $user->getNickName());
         echo $view->render();
-    }
-
-    /**
-     *  Logout Action
-     */
-    public function logout()
-    {
-        //Deleting session
-        session_start();
-        session_destroy();
-        $this->redirect('login');
     }
 }
