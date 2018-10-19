@@ -134,6 +134,17 @@ $collection->attachRoute(
     )
 );
 
+$collection->attachRoute(
+    new Route(
+        '/browse/filter',
+        array(
+            '_controller' => 'jis\a2\controller\BrowseController::getFilteredProducts',
+            'methods' => 'GET',
+            'name' => 'getFilteredProducts'
+        )
+    )
+);
+
 /**
  * Ajax check for user name existence in signup page
  */

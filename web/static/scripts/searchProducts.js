@@ -9,7 +9,7 @@ searcher.lastCompletedRequestIndex = 0;
 
 /**
  * Finds products using the given server request asynchronously and displays them.
- * @param input str The server request.
+ * @param requestString str The server request.
  */
 searcher.search = function(requestString) {
     let xmlhttp = new XMLHttpRequest();
@@ -31,6 +31,7 @@ searcher.search = function(requestString) {
     };
     xmlhttp.open("GET", requestString, true);
     xmlhttp.send();
+
     if(searcher.lastRequest === null) {
         searcher.lastRequest = searcher.currentRequest;
     }
@@ -46,4 +47,11 @@ searcher.search = function(requestString) {
  */
 searcher.searchByName = function(input) {
     this.search("find?search=" + encodeURIComponent(input));
+};
+
+searcher.searchByFormData = function (form) {
+    const queryString = [...new FormData(form).entries()]
+        .map(e => encodeURIComponent(e[0]) + "=" + encodeURIComponent(e[1]))
+        .join('&');
+    this.search("filter?" + queryString);
 };
