@@ -80,6 +80,10 @@ table.center {
     margin: 1%;
 }
 
+.sortHeaderRow th {
+    cursor: pointer;
+}
+
 
 /**
  * IDs

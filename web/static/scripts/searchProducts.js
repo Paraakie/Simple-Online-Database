@@ -10,8 +10,9 @@ searcher.lastCompletedRequestIndex = 0;
 /**
  * Finds products using the given server request asynchronously and displays them.
  * @param requestString str The server request.
+ * @param callback A function that will be called when the data is changed
  */
-searcher.search = function(requestString) {
+searcher.search = function(requestString, callback) {
     let xmlhttp = new XMLHttpRequest();
     const requestIndex = this.requestIndex + 1;
     this.requestIndex = requestIndex;
@@ -21,6 +22,7 @@ searcher.search = function(requestString) {
             if(requestIndex > searcher.lastCompletedRequestIndex) {
                 searcher.lastCompletedRequestIndex = requestIndex;
                 document.getElementsByClassName("productsTableBody")[0].innerHTML = this.responseText;
+                callback();
             }
             if(xmlhttp === searcher.currentRequest) {
                 searcher.currentRequest = null;
@@ -44,14 +46,15 @@ searcher.search = function(requestString) {
 /**
  * Finds products with a similar name asynchronously and displays them.
  * @param input str The name to search for in the products table
+ * @param callback Function to be call when data is changed
  */
-searcher.searchByName = function(input) {
-    this.search("find?search=" + encodeURIComponent(input));
+searcher.searchByName = function(input, callback) {
+    this.search("find?search=" + encodeURIComponent(input), callback);
 };
 
-searcher.searchByFormData = function (form) {
+searcher.searchByFormData = function (form, callback) {
     const queryString = [...new FormData(form).entries()]
         .map(e => encodeURIComponent(e[0]) + "=" + encodeURIComponent(e[1]))
         .join('&');
-    this.search("filter?" + queryString);
+    this.search("filter?" + queryString, callback);
 };
