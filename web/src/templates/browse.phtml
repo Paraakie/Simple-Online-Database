@@ -8,11 +8,13 @@
         <h1>Filter</h1>
         <input type="radio" name="stock" value="all"><label>&nbsp;All</label><br>
         <input type="radio" name="stock" value="inStock"><label>&nbsp;In-Stock-only</label><br>
-        <input type="radio" name="stock" value="outStock"><label>&nbsp;Out of Stock</label><br><br><br><br>
-        <input type="checkbox" name="pc" value="PC"><label>&nbsp;PC</label><br/>
-        <input type="checkbox" name="motherboard" value="motherboard"><label>&nbsp;Mother Board</label><br/>
-        <input type="checkbox" name="gc" value="gc"><label>&nbsp;Graphics Card</label><br/>
-        <input type="checkbox" name="acc" value="acc"><label>&nbsp;Accessories</label><br/>
+        <input type="radio" name="stock" value="outStock"><label>&nbsp;Out-of-Stock-only</label><br><br><br><br>
+        <?php
+        foreach($categories as $category) {
+            echo "<input type=\"checkbox\" name=\"{$category->getName()}\""
+                . " value=\"{$category->getName()}\"><label>&nbsp;{$category->getName()}</label><br/>";
+        }
+        ?>
     </form>
 </div>
 <div id="ProductsTableDiv">
