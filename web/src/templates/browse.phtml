@@ -2,31 +2,37 @@
 <?php include "header.phtml" ?>
 <?php include "menu.phtml"?>
 <!------------------------------>
-<!-- PC , USB, MOTHERBOARD, GRAPHICS CARD, ACCESSORIES-->
+<script>
+    function changFilters(form) {
+        searcher.searchByFormData(form, function() {
+            let productsTableBody = document.getElementsByClassName('productsTableBody')[0];
+            sortTable(productsTableBody, currentIndex, -orders[currentIndex]);
+        });
+    }
+    window.onload = function () {
+        searcher.search("filter?stock=all", function() {
+            let productsTableBody = document.getElementsByClassName('productsTableBody')[0];
+            sortTable(productsTableBody, currentIndex, -orders[currentIndex]);
+        });
+    };
+</script>
 <div id="sideBar" >
     <form>
         <h1>Filter</h1>
-        <input type="radio" name="stock" value="all"><label>&nbsp;All</label><br>
-        <input type="radio" name="stock" value="inStock"><label>&nbsp;In-Stock-only</label><br>
-        <input type="radio" name="stock" value="outStock"><label>&nbsp;Out of Stock</label><br><br><br><br>
-        <input type="checkbox" name="pc" value="PC"><label>&nbsp;PC</label><br/>
-        <input type="checkbox" name="motherboard" value="motherboard"><label>&nbsp;Mother Board</label><br/>
-        <input type="checkbox" name="gc" value="gc"><label>&nbsp;Graphics Card</label><br/>
-        <input type="checkbox" name="acc" value="acc"><label>&nbsp;Accessories</label><br/>
+        <input type="radio" name="stock" value="all" checked onchange="changFilters(this.form)"><label>&nbsp;All</label><br>
+        <input type="radio" name="stock" value="inStock" onchange="changFilters(this.form)"><label>&nbsp;In-Stock-only</label><br>
+        <input type="radio" name="stock" value="outStock" onchange="changFilters(this.form)"><label>&nbsp;Out-of-Stock-only</label><br><br><br><br>
+        <?php
+        foreach($categories as $category) {
+            echo "<input type=\"checkbox\" name=\"categories[]\" onchange=\"changFilters(this.form)\""
+                . " value=\"{$category->getName()}\"><label>&nbsp;{$category->getName()}</label><br/>";
+        }
+        ?>
     </form>
 </div>
-<div id="ProductsTable">
+<div id="ProductsTableDiv">
     <h1>Available Products</h1>
-    <table id="product">
-        <tr>
-            <th>SKU</th>
-            <th>Name</th>
-            <th>Cost</th>
-            <th>Stock Qty</th>
-        </tr>
-        <tr>
-        </tr>
-    </table>
+    <?php include "productsTable.phtml" ?>
 </div>
 <!------------------------------>
 <?php include "footer.phtml" ?>

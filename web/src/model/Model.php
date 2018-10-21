@@ -181,6 +181,7 @@ class Model
         ProductModel::create('Gaming Mouse', 'A02', 10000, 10, $accessories)->save();
         ProductModel::create('Standard Mouse', 'A03', 6000, 40, $accessories)->save();
         ProductModel::create('Keyboard', 'A04', 1000, 20, $accessories)->save();
+        ProductModel::create('LED Keyboard', 'A05', 2000, 0, $accessories)->save();
     }
 
     /**

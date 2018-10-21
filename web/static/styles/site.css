@@ -39,6 +39,16 @@ a {
     text-align: center;
 }
 
+.center table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .right{
     text-align: right;
 }
@@ -57,6 +67,14 @@ a {
     margin-right: fill;
 }
 
+.small-margin {
+    margin: 1%;
+}
+
+.sortHeaderRow th {
+    cursor: pointer;
+}
+
 
 /**
  * IDs
@@ -68,7 +86,8 @@ a {
     margin-bottom: -30px;
 }
 
-#site-footer {
+#page-wrap:after {
+    float:bottom;
     height: 10px;
 }
 
@@ -176,35 +195,24 @@ input[type="radio"] + label{
  * Products table
  */
 
-#ProductsTable{
+#ProductsTableDiv{
     display: inline-block;
-    float:right;
+    margin-left:23%;
     width: 70%;
     border-style: solid;
     margin-top:4%;
     margin-right: 5%;
 }
 
-#ProductsTable h1{
+#ProductsTableDiv h1{
     font-size: 2em;
     text-align: center;
     margin:0;
     padding-bottom: 3%;
 }
 
-#ProductsTable table{
-    text-align: center;
-    margin:auto;
-    font-size: 1.5em;
-    border:1px solid;
-}
-
-#ProductsTable th , #ProductsTable td{
-    border:1px solid;
-    text-align: left;
-    padding-top:15px;
-    padding-bottom: 15px;
-    padding-right:100px;
+#ProductsTableDiv table {
+    width: 100%;
 }
 
 .search {
@@ -230,8 +238,13 @@ input[type="radio"] + label{
 /**
  * Product Table ForSearch
  */
-.ProductsTableForSearch table, .ProductsTableForSearch th, .ProductsTableForSearch td{
+.ProductsTable table, .ProductsTable th, .ProductsTable td {
     border: 1px solid;
-    padding: 2px 10px 2px 10px;
+    padding: 0.4em 1.2em;
+    position: relative;
+    text-align: left;
+}
 
+.with-currency[lang="en-NZ"] td:nth-child(4)::before {
+    content: '$';
 }

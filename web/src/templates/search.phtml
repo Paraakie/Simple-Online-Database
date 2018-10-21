@@ -1,44 +1,28 @@
-<!-- This Screen allows the user to search for any available item ->
+<!-- This Screen allows the user to search for any available item -->
 
 <?php include "header.phtml" ?>
 <?php include "menu.phtml"?>
+<script>
+    window.onload = function () {
+        searcher.searchByName("", function() {
+            let productsTableBody = document.getElementsByClassName('productsTableBody')[0];
+            sortTable(productsTableBody, currentIndex, -orders[currentIndex]);
+        });
+    };
+</script>
 <!------------------------------>
-<div class = "margin_35pc">
-    <br>
-    <form action="">
+<div class="center">
+    <form action="" class="small-margin">
         <label for="txt1">Search: </label>
         <span class="search">
             <span class="fa fa-search"></span>
-            <input type="search" id="txt1" onkeyup="showHint(this.value)">
+            <input type="search" id="txt1" onkeyup="searcher.searchByName(this.value, function() {
+                let productsTableBody = document.getElementsByClassName('productsTableBody')[0];
+                sortTable(productsTableBody, currentIndex, -orders[currentIndex]);
+            })">
         </span>
     </form>
-    <table class="ProductsTableForSearch">
-        <thead>
-            <tr>
-                <th>SKU</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Cost</th>
-                <th>Stock Qty</th>
-            </tr>
-        </thead>
-        <?php
-        for($i=0; $i < 4; $i++){
-            echo("
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            ");
-        }
-        ?>
-    </table>
-    <p>Suggestions: <span id="txtHint"></span></p>
+    <?php include "productsTable.phtml" ?>
 </div>
-<br>
-<a class="backButton" href="<?= $linkTo('Home'); ?>">Back</a>
 <!------------------------------>
 <?php include "footer.phtml" ?>

@@ -18,6 +18,10 @@ class SearchController extends Controller
      */
     public function search()
     {
+        $user = UserAccountController::getCurrentUser();
+        if($user === null) {
+            return;
+        }
         $view = new View('search');
         echo $view->render();
     }
@@ -27,29 +31,18 @@ class SearchController extends Controller
      */
     public function returnMatches()
     {
+        $user = UserAccountController::getCurrentUser();
+        if($user === null) {
+            return;
+        }
         // get the q parameter from URL
         $q = $_GET['search'];
         if($q === null) {
             $q = "";
         }
-        $products = (new ProductListModel())->findProductsWithSimilarName($q, 10);
-        if(!$products->valid()) {
-            echo "no suggestion";
-        } else {
-            while (true) {
-                $product = $products->current();
-                $products->next();
-                //echo $product->getStockKeepingUnit();
-                echo $product->getName();
-                //echo $product->getCategoryID();
-                //echo $product->getCost();
-                //echo $product->getQuantiity();
-                if($products->valid()) {
-                    echo ", ";
-                } else {
-                    break;
-                }
-            }
-        }
+        $products = (new ProductListModel())->findProductsWithSimilarName($q, 100);
+        $tableData = new View('productsTableBody');
+        $tableData->addData('products', $products);
+        echo $tableData->render();
     }
 }
