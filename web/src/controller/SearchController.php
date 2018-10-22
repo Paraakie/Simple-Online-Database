@@ -1,16 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * @author Sven Gerhards
- * Date: 10/10/2018
- * Time: 5:56 PM
- */
 
 namespace jis\a2\controller;
 
 use jis\a2\model\ProductListModel;
 use jis\a2\view\View;
 
+/**
+ * Class SearchController handles seraching
+ * @package jis\a2\controller
+ * @author Isaac Clancy, Junyi Chen, Sven Gerhards
+ */
 class SearchController extends Controller
 {
     /**

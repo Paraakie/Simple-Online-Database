@@ -29,7 +29,11 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * render the home page
+     */
     public function showHome() {
+        //user authentication
         $user = UserAccountController::getCurrentUser();
         if($user === null) {
             return;

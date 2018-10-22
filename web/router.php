@@ -48,6 +48,7 @@ $collection->attachRoute(
     )
 );
 
+
 $collection->attachRoute(
     new Route(
         '/login/',
@@ -70,6 +71,9 @@ $collection->attachRoute(
     )
 );
 
+/**
+ * Sign up router
+ */
 $collection->attachRoute(
     new Route(
         '/signUp/',
