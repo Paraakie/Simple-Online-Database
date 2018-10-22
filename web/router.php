@@ -1,4 +1,11 @@
+
 <?php
+/**
+ * 159.339 Internet Programming 2018.2
+ * 16192554, Junyi Chen
+ * 15031719, Sven Gerhards
+ * 16125296, Issac Clancy
+ */
 
 use PHPRouter\RouteCollection;
 use PHPRouter\Router;

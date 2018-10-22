@@ -1,9 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Paraakie
- * Date: 10/10/2018
- * Time: 7:05 PM
+ * 159.339 Internet Programming 2018.2
+ * 16192554, Junyi Chen
+ * 15031719, Sven Gerhards
+ * 16125296, Issac Clancy
  */
 
 namespace jis\a2\controller;
