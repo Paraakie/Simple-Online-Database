@@ -8,10 +8,10 @@
 
 namespace jis\a2\model;
 
-
 /**
  * Handles finding product that satisfy the given condition
  * @package jis\a2
+ * @author Issac Clancy, Junyi Chen, Sven Gerhards
  */
 class ProductListModel extends Model
 {
@@ -133,6 +133,11 @@ class ProductListModel extends Model
         }
     }
 
+    /**
+     * finds products that match the category name
+     * @param array $categories category name
+     * @return \Generator
+     */
     public function findProductsWithCategory(array $categories)
     {
         $categoryIds = [];
@@ -162,6 +167,11 @@ class ProductListModel extends Model
         }
     }
 
+    /**
+     * finds products that are in stock with category specified
+     * @param array $categories
+     * @return \Generator
+     */
     public function findInStockProductsWithCategory(array $categories)
     {
         $categoryIds = [];
@@ -191,6 +201,11 @@ class ProductListModel extends Model
         }
     }
 
+    /**
+     * finds products that are out of stock with category specified
+     * @param array $categories Category name
+     * @return \Generator
+     */
     public function findNotInStockProductsWithCategory(array $categories)
     {
         $categoryIds = [];

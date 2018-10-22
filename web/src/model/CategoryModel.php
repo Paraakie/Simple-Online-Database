@@ -8,7 +8,12 @@
 
 namespace jis\a2\model;
 
-
+/**
+ * Class CategoryModel Stores information about a category and handles saving it to a database
+ * @package jis\a2\model
+ * @author Issac Clancy, Junyi Chen, Sven Gerhards
+ *
+ */
 class CategoryModel extends Model
 {
     /**
@@ -85,6 +90,11 @@ class CategoryModel extends Model
         return $category;
     }
 
+    /**
+     * Creates a new category
+     * @param string $name new Category name
+     * @return CategoryModel
+     */
     static public function create(string $name): CategoryModel
     {
         $category = new CategoryModel();

@@ -194,6 +194,15 @@ class ProductModel extends Model
         return $this;
     }
 
+    /**
+     * Creates a new product
+     * @param string $name Product name
+     * @param string $stockKeepingUnit Product stock number
+     * @param int $cost Product price
+     * @param int $quantity Product quantity
+     * @param int $categoryID Product Id
+     * @return ProductModel
+     */
     static public function create(string $name, string $stockKeepingUnit, int $cost, int $quantity,
         int $categoryID): ProductModel
     {
