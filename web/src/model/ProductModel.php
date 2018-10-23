@@ -208,8 +208,8 @@ class ProductModel extends Model
         string $stockKeepingUnit,
         int $cost,
         int $quantity,
-        int $categoryID): ProductModel
-    {
+        int $categoryID
+    ): ProductModel {
         $product = new ProductModel();
         $product->name = $name;
         $product->stockKeepingUnit = $stockKeepingUnit;

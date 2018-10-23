@@ -195,8 +195,12 @@ class Model
      */
     private function createSampleUser(): void
     {
-        UserAccountModel::create("Tim Taylor", "TheToolman",
-            password_hash("TheToolman", PASSWORD_DEFAULT), "TheToolman@gmail.com")->save();
+        UserAccountModel::create(
+            "Tim Taylor",
+            "TheToolman",
+            password_hash("TheToolman", PASSWORD_DEFAULT),
+            "TheToolman@gmail.com"
+        )->save();
     }
 
     /**

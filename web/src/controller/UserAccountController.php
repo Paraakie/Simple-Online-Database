@@ -143,7 +143,7 @@ class UserAccountController extends Controller
     public function checkUserExist(string $name)
     {
         $userAccount = new UserAccountModel();
-        if ($userAccount -> loadByUserName($name) != null){
+        if ($userAccount -> loadByUserName($name) != null) {
             echo "user name $name already exist !";
         }
     }
