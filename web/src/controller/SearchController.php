@@ -6,14 +6,14 @@
  * 16125296, Issac Clancy
  */
 
-namespace jis\a2\controller;
+namespace jis\a3\controller;
 
-use jis\a2\model\ProductListModel;
-use jis\a2\view\View;
+use jis\a3\model\ProductListModel;
+use jis\a3\view\View;
 
 /**
  * Class SearchController handles seraching
- * @package jis\a2\controller
+ * @package jis\a3
  * @author Isaac Clancy, Junyi Chen, Sven Gerhards
  */
 class SearchController extends Controller

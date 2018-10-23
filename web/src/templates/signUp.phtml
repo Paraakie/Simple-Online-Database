@@ -8,7 +8,7 @@
 
     <h2 class="center">Please Enter Your Details</h2>
 
-    <form method="post" action="" onsubmit="return validateSubmit(this)">
+    <form method="post" action="" onsubmit="return validateSubmit(this)" id="inputForm">
 
             <? echo "<p class='errorMessage'>$error</p>"?>
             <br>
@@ -50,7 +50,7 @@
     </form>
 </div>
 <script>
-    let body = document.getElementById("body");
+    let body = document.getElementsByTagName("body")[0];
     body.onresize = centerBasedOnFirstTwoColumns;
     body.onload = centerBasedOnFirstTwoColumns;
 </script>

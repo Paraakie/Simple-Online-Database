@@ -15,7 +15,7 @@
  * @author  A. Gilman <a.gilman@massey.ac.nz>
  **/
 
-namespace jis\a2;
+namespace jis\a3;
 
 date_default_timezone_set('Pacific/Auckland');
 const APP_ROOT = __DIR__;

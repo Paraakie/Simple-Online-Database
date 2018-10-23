@@ -6,14 +6,14 @@
  * 16125296, Issac Clancy
  */
 
-namespace jis\a2\controller;
+namespace jis\a3\controller;
 
-use jis\a2\view\View;
+use jis\a3\view\View;
 
 /**
  * Class HomeController handles redirecting to the right page when the default page is requested
  *
- * @package jis/a2
+ * @package jis/a3
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  * @author Isaac Clancy, Junyi Chen, Sven Gerhards
  */

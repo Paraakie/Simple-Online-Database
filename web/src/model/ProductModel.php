@@ -5,13 +5,13 @@
  * 15031719, Sven Gerhards
  * 16125296, Issac Clancy
  */
-namespace jis\a2\model;
+namespace jis\a3\model;
 
 
 /**
  * Stores the information about a product and handles saving it to a database
  *
- * @package jis/a2
+ * @package jis/a3
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  * @author  Isaac Clancy, Junyi Chen, Sven Gerhards
  */

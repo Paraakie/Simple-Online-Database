@@ -6,14 +6,14 @@
  * 16125296, Issac Clancy
  */
 
-namespace jis\a2\controller;
+namespace jis\a3\controller;
 
-use jis\a2\view\View;
-use jis\a2\model\UserAccountModel;
+use jis\a3\view\View;
+use jis\a3\model\UserAccountModel;
 
 /**
  * Class UserAccountController Handles all requests related to a user e.g. creating an account and logging in
- * @package jis\a2
+ * @package jis\a3
  * @author Isaac Clancy, Junyi Chen, Sven Gerhards
  * @Date: 25/09/2018
  * @Time: 2:43 PM

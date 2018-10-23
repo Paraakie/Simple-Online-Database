@@ -6,15 +6,15 @@
  * 16125296, Issac Clancy
  */
 
-namespace jis\a2\controller;
+namespace jis\a3\controller;
 
-use jis\a2\model\CategoryListModel;
-use jis\a2\model\ProductListModel;
-use jis\a2\view\View;
+use jis\a3\model\CategoryListModel;
+use jis\a3\model\ProductListModel;
+use jis\a3\view\View;
 
 /**
  * Class BrowseController Handles all requests related to browse product page
- * @package jis\a3\controller
+ * @package jis\a3
  * @author Issac Clancy, Junyi Chen, Sven Gerhards
  */
 class BrowseController

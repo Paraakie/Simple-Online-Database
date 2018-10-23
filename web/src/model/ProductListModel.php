@@ -6,11 +6,11 @@
  * 16125296, Issac Clancy
  */
 
-namespace jis\a2\model;
+namespace jis\a3\model;
 
 /**
  * Handles finding product that satisfy the given condition
- * @package jis\a2
+ * @package jis\a3
  * @author Issac Clancy, Junyi Chen, Sven Gerhards
  */
 class ProductListModel extends Model

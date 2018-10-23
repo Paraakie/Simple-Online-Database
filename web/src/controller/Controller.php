@@ -6,12 +6,12 @@
  * 16125296, Issac Clancy
  */
 
-namespace jis\a2\controller;
+namespace jis\a3\controller;
 
 /**
  * Class Controller defines helper functions to be used by other controllers
  *
- * @package jis/a2
+ * @package jis/a3
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  * @author Isaac Clancy, Junyi Chen, Sven Gerhards
  */

@@ -5,9 +5,9 @@
  * 15031719, Sven Gerhards
  * 16125296, Issac Clancy
  */
-namespace jis\a2\view;
+namespace jis\a3\view;
 
-use const jis\a2\APP_ROOT;
+use const jis\a3\APP_ROOT;
 
 /**
  * Class View

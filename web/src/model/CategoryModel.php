@@ -6,11 +6,11 @@
  * 16125296, Issac Clancy
  */
 
-namespace jis\a2\model;
+namespace jis\a3\model;
 
 /**
  * Class CategoryModel Stores information about a category and handles saving it to a database
- * @package jis\a2\model
+ * @package jis\a3
  * @author Issac Clancy, Junyi Chen, Sven Gerhards
  *
  */

@@ -76,24 +76,26 @@ function validateSubmit(form) {
         isValid = false;
     }
 
-    if(document.getElementById("userNameErrorMessage").innerText !== "") {
+    if(isValid) {
         isValid = false;
-    } else {
         let userName = form["userName"].value;
-        let xHTTP = new XMLHttpRequest();
-        xHTTP.onreadystatechange = function () {
-            if(this.readyState === 4 && this.status === 200){
-                document.getElementById("userNameErrorMessage").innerText = this.responseText;
-                if(this.responseText !== "") {
-                    isValid = false;
+        if(document.getElementById("userNameErrorMessage").innerText === "" && userName.match(/^[a-zA-Z0-9]+$/)) {
+            let xHTTP = new XMLHttpRequest();
+            xHTTP.onreadystatechange = function () {
+                if(this.readyState === 4 && this.status === 200){
+                    document.getElementById("userNameErrorMessage").innerText = this.responseText;
+                    if(this.responseText === "") {
+                        isValid = true;
+                    }
+                } else if (this.readyState === 4 && this.status === 404){
+                    alert("not found");
                 }
-            } else if (this.readyState === 4 && this.status === 404){
-                alert("not found");
-            }
-        };
-        xHTTP.open("GET", "checkUserName/"+userName, false);
-        xHTTP.send();
+            };
+            xHTTP.open("GET", "checkUserName/"+userName, false);
+            xHTTP.send();
+        }
     }
+
 
     return isValid;
 }
@@ -102,7 +104,9 @@ function checkUserExist(userInput){
 
     //check user input length
     if(userInput.length === 0) {
-        document.getElementById("userNameErrorMessage").innerText = "Please enter a user name!";
+        document.getElementById("userNameErrorMessage").innerText = "Please enter a user name";
+    } else if(!userInput.match(/^[a-zA-Z0-9]+$/)) {
+        document.getElementById("userNameErrorMessage").innerText = "Your user name must contain only letters and numbers";
     } else {
         let xHTTP = new XMLHttpRequest();
         xHTTP.onreadystatechange = function () {

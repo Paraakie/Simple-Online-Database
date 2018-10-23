@@ -1,4 +1,3 @@
-
 <?php
 /**
  * 159.339 Internet Programming 2018.2
@@ -20,7 +19,7 @@ $collection->attachRoute(
     new Route(
         '/',
         array(
-            '_controller' => 'jis\a2\controller\HomeController::indexAction',
+            '_controller' => 'jis\a3\controller\HomeController::indexAction',
             'methods' => 'GET',
             'name' => 'Home'
         )
@@ -34,7 +33,7 @@ $collection->attachRoute(
     new Route(
         '/home/',
         array(
-            '_controller' => 'jis\a2\controller\HomeController::showHome',
+            '_controller' => 'jis\a3\controller\HomeController::showHome',
             'methods' => 'GET',
             'name' => 'showHome'
         )
@@ -48,7 +47,7 @@ $collection->attachRoute(
     new Route(
         '/login/',
         array(
-            '_controller' => 'jis\a2\controller\UserAccountController::login',
+            '_controller' => 'jis\a3\controller\UserAccountController::login',
             'methods' => 'GET',
             'name' => 'login'
         )
@@ -60,7 +59,7 @@ $collection->attachRoute(
     new Route(
         '/login/',
         array(
-            '_controller' => 'jis\a2\controller\UserAccountController::login',
+            '_controller' => 'jis\a3\controller\UserAccountController::login',
             'methods' => 'POST',
             'name' => 'login'
         )
@@ -71,7 +70,7 @@ $collection->attachRoute(
     new Route(
         '/signUp/',
         array(
-            '_controller' => 'jis\a2\controller\UserAccountController::signUp',
+            '_controller' => 'jis\a3\controller\UserAccountController::signUp',
             'methods' => 'POST',
             'name' => 'signUp'
         )
@@ -85,7 +84,7 @@ $collection->attachRoute(
     new Route(
         '/signUp/',
         array(
-            '_controller' => 'jis\a2\controller\UserAccountController::signUp',
+            '_controller' => 'jis\a3\controller\UserAccountController::signUp',
             'methods' => 'GET',
             'name' => 'signUp'
         )
@@ -99,7 +98,7 @@ $collection->attachRoute(
     new Route(
         '/home/logout/',
         array(
-            '_controller' => 'jis\a2\controller\UserAccountController::logout',
+            '_controller' => 'jis\a3\controller\UserAccountController::logout',
             'methods' => 'GET',
             'name' => 'logout'
         )
@@ -113,7 +112,7 @@ $collection->attachRoute(
     new Route(
         '/search/',
         array(
-            '_controller' => 'jis\a2\controller\SearchController::search',
+            '_controller' => 'jis\a3\controller\SearchController::search',
             'methods' => 'GET',
             'name' => 'search'
         )
@@ -124,7 +123,7 @@ $collection->attachRoute(
     new Route(
         '/search/find',
         array(
-            '_controller' => 'jis\a2\controller\SearchController::returnMatches',
+            '_controller' => 'jis\a3\controller\SearchController::returnMatches',
             'methods' => 'GET',
             'name' => 'returnMatches'
         )
@@ -138,7 +137,7 @@ $collection->attachRoute(
     new Route(
         '/browse/',
         array(
-            '_controller' => 'jis\a2\controller\BrowseController::browse',
+            '_controller' => 'jis\a3\controller\BrowseController::browse',
             'methods' => 'GET',
             'name' => 'browse'
         )
@@ -149,7 +148,7 @@ $collection->attachRoute(
     new Route(
         '/browse/filter',
         array(
-            '_controller' => 'jis\a2\controller\BrowseController::getFilteredProducts',
+            '_controller' => 'jis\a3\controller\BrowseController::getFilteredProducts',
             'methods' => 'GET',
             'name' => 'getFilteredProducts'
         )
@@ -163,7 +162,7 @@ $collection->attachRoute(
     new Route(
         '/signUp/checkUserName/:id',
         array(
-            '_controller' => 'jis\a2\controller\UserAccountController::checkUserExist',
+            '_controller' => 'jis\a3\controller\UserAccountController::checkUserExist',
             'methods' => 'GET',
             'name' => 'checkUserExist'
         )

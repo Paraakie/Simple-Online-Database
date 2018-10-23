@@ -5,7 +5,7 @@
  * 15031719, Sven Gerhards
  * 16125296, Issac Clancy
  */
-namespace jis\a2\model;
+namespace jis\a3\model;
 
 
 class CategoryListModel extends Model

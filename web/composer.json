@@ -1,5 +1,5 @@
 {
-  "name": "jis/a2",
+  "name": "jis/a3",
   "version": "1.0.0",
   "description": "Massey University Internet Programming 159.339 Assignment 2",
   "require": {
@@ -14,7 +14,7 @@
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "jis\\a2\\": "src/"
+      "jis\\a3\\": "src/"
     }
   }
 }
