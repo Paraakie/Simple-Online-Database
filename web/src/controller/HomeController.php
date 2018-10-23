@@ -32,10 +32,11 @@ class HomeController extends Controller
     /**
      * render the home page
      */
-    public function showHome() {
+    public function showHome()
+    {
         //user authentication
         $user = UserAccountController::getCurrentUser();
-        if($user === null) {
+        if ($user === null) {
             return;
         }
         $view = new View("userHome");

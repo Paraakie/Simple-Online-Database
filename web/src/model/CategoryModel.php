@@ -24,7 +24,7 @@ class CategoryModel extends Model
      * @param string $name The name of the category e.g. Graphics card
      * @return CategoryModel|null The category if successful, null otherwise
      */
-    static public function loadByName(string $name): ?CategoryModel
+    public static function loadByName(string $name): ?CategoryModel
     {
         $category = new CategoryModel();
 
@@ -56,7 +56,7 @@ class CategoryModel extends Model
      * @param $id int The unique id for this category
      * @return CategoryModel|null The category if successful, null otherwise
      */
-    static public function loadById(int $id): ?CategoryModel
+    public static function loadById(int $id): ?CategoryModel
     {
         $category = new CategoryModel();
 
@@ -89,7 +89,7 @@ class CategoryModel extends Model
      * @param string $name new Category name
      * @return CategoryModel
      */
-    static public function create(string $name): CategoryModel
+    public static function create(string $name): CategoryModel
     {
         $category = new CategoryModel();
         $category->name = $name;

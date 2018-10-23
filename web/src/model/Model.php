@@ -122,13 +122,13 @@ class Model
         }
 
         // These need to be delayed to they can created models without the database being half initialed
-        if($needsToCreateSampleCategories) {
+        if ($needsToCreateSampleCategories) {
             $this->createSampleCategories();
         }
-        if($needsToCreateSampleProducts) {
+        if ($needsToCreateSampleProducts) {
             $this->createSampleProducts();
         }
-        if($needsToCreateSampleUser) {
+        if ($needsToCreateSampleUser) {
             $this->createSampleUser();
         }
     }
