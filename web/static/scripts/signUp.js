@@ -32,7 +32,7 @@ function getErrorInPassword(password) {
         return "The password must contain at least one uppercase letter";
     }
     if(password.length > 14) {
-        return "The password cannot be longer than 14 characters";
+        return "The password cannot be longer than 15 characters";
     }
     if(password.length < 7) {
         return "The password must be at least 7 characters long";

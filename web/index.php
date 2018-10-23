@@ -1,11 +1,11 @@
 <?php
 /**
- * 159.339 Internet Programming 2017.2
+ * 159.339 Internet Programming 2018.2
  * 16192554, Junyi Chen
  * 15031719, Sven Gerhards
  * 16125296, Issac Clancy
  *
- * Assignment: 2   Date: 01/09/17
+ * Assignment: 3   Date: 01/09/17
  * System: PHP 7.1
  * Code guidelines: PSR-1, PSR-2
  *
