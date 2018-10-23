@@ -62,11 +62,6 @@ table.center {
     margin-right: fill;
 }
 
-.margin_35pc {
-    margin-left: 35%;
-    margin-right: fill;
-}
-
 .small-margin {
     margin: 1%;
 }
@@ -107,6 +102,8 @@ table.center {
 
 #usageInstructions {
     font-size: larger;
+    text-align: left;
+    display: inline-block;
 }
 
 #browseProduct{
