@@ -23,21 +23,21 @@ class ProductListModel extends Model
      */
     public function findProductsWithSimilarName(string $name, int $maxNumber): \Generator
     {
-        if(count($name) > 40) {
+        if (count($name) > 40) {
             $name = substr($name, 0, 40);
         }
-        if(!$stm = $this->db->prepare("SELECT `id` FROM products WHERE `name` LIKE ? LIMIT ?")) {
+        if (!$stm = $this->db->prepare("SELECT `id` FROM products WHERE `name` LIKE ? LIMIT ?")) {
             die($this->db->error);
         }
         $pattern = '%' . $name . '%';
         $stm->bind_param("si", $pattern, $maxNumber);
 
-        if(!$stm->execute()) {
+        if (!$stm->execute()) {
             $stm->close();
             die($this->db->error);
         }
         $result = $stm->get_result();
-        if(!$result) {
+        if (!$result) {
             $stm->close();
             die($this->db->error);
         }
@@ -57,15 +57,15 @@ class ProductListModel extends Model
      */
     public function findProductsInStock(): \Generator
     {
-        if(!$stm = $this->db->prepare("SELECT id FROM products WHERE quantity!=0")) {
+        if (!$stm = $this->db->prepare("SELECT id FROM products WHERE quantity!=0")) {
             die($this->db->error);
         }
-        if(!$stm->execute()) {
+        if (!$stm->execute()) {
             $stm->close();
             die($this->db->error);
         }
         $result = $stm->get_result();
-        if(!$result) {
+        if (!$result) {
             $stm->close();
             die($this->db->error);
         }
@@ -84,15 +84,15 @@ class ProductListModel extends Model
      */
     public function findProductsNotInStock(): \Generator
     {
-        if(!$stm = $this->db->prepare("SELECT id FROM products WHERE quantity=0")) {
+        if (!$stm = $this->db->prepare("SELECT id FROM products WHERE quantity=0")) {
             die($this->db->error);
         }
-        if(!$stm->execute()) {
+        if (!$stm->execute()) {
             $stm->close();
             die($this->db->error);
         }
         $result = $stm->get_result();
-        if(!$result) {
+        if (!$result) {
             $stm->close();
             die($this->db->error);
         }
@@ -179,7 +179,8 @@ class ProductListModel extends Model
             $categoryIds[] = CategoryModel::loadByName($category)->getId();
         }
         $idsString = implode(',', $categoryIds);
-        if (!$stmt = $this->db->prepare("SELECT id FROM products WHERE categoryId IN (" . $idsString . ") AND quantity!=0")) {
+        if (!$stmt = $this->db->prepare("SELECT id FROM products WHERE categoryId IN (" . $idsString . ") 
+        AND quantity!=0")) {
             die($this->db->error);
         }
         if (!$stmt->execute()) {
@@ -213,7 +214,8 @@ class ProductListModel extends Model
             $categoryIds[] = CategoryModel::loadByName($category)->getId();
         }
         $idsString = implode(',', $categoryIds);
-        if (!$stmt = $this->db->prepare("SELECT id FROM products WHERE categoryId IN (" . $idsString . ") AND quantity=0")) {
+        if (!$stmt = $this->db->prepare("SELECT id FROM products WHERE categoryId IN (" . $idsString . ") 
+        AND quantity=0")) {
             die($this->db->error);
         }
         if (!$stmt->execute()) {

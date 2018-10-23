@@ -24,7 +24,7 @@ class SearchController extends Controller
     public function search()
     {
         $user = UserAccountController::getCurrentUser();
-        if($user === null) {
+        if ($user === null) {
             return;
         }
         $view = new View('search');
@@ -37,12 +37,12 @@ class SearchController extends Controller
     public function returnMatches()
     {
         $user = UserAccountController::getCurrentUser();
-        if($user === null) {
+        if ($user === null) {
             return;
         }
         // get the q parameter from URL
         $q = $_GET['search'];
-        if($q === null) {
+        if ($q === null) {
             $q = "";
         }
         $products = (new ProductListModel())->findProductsWithSimilarName($q, 100);

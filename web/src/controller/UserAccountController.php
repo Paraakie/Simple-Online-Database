@@ -42,7 +42,7 @@ class UserAccountController extends Controller
             return 'Your password must be at least '
                 . UserAccountController::MIN_PASSWORD_LENGTH . ' characters long';
         }
-        if($passwordLength > UserAccountController::MAX_PASSWORD_LENGTH) {
+        if ($passwordLength > UserAccountController::MAX_PASSWORD_LENGTH) {
             return 'Your password cannot be longer than '
                 . UserAccountController::MIN_PASSWORD_LENGTH . ' characters long';
         }
@@ -140,12 +140,12 @@ class UserAccountController extends Controller
      * check a user name is exist or not
      * @param string $name The users userName
      */
-    public function checkUserExist(string $name){
+    public function checkUserExist(string $name)
+    {
         $userAccount = new UserAccountModel();
-        if($userAccount -> loadByUserName($name) != null){
+        if ($userAccount -> loadByUserName($name) != null) {
             echo "user name $name already exist !";
         }
-
     }
 
         /**

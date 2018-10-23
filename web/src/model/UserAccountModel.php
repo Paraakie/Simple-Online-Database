@@ -196,7 +196,8 @@ class UserAccountModel extends Model
     /**
      * @return string The name to call the user by
      */
-    public function getNickName(): string {
+    public function getNickName(): string
+    {
         return $this->nickName;
     }
 
@@ -245,7 +246,7 @@ class UserAccountModel extends Model
         return $this->id;
     }
 
-    static public function create(string $nickName, string $userName, string $password, string $email): UserAccountModel
+    public static function create(string $nickName, string $userName, string $password, string $email): UserAccountModel
     {
         $user = new UserAccountModel();
         $user->nickName = $nickName;

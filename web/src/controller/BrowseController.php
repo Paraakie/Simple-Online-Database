@@ -26,7 +26,7 @@ class BrowseController
     {
         //user authentication
         $user = UserAccountController::getCurrentUser();
-        if($user === null) {
+        if ($user === null) {
             return;
         }
         //finds all products in our database
@@ -47,7 +47,7 @@ class BrowseController
     {
         //user authentication
         $user = UserAccountController::getCurrentUser();
-        if($user === null) {
+        if ($user === null) {
             return;
         }
         //check filter bar
@@ -57,20 +57,20 @@ class BrowseController
         $productList = new ProductListModel();
         $products = null;
         //display correct products according to filter bar seletction
-        if($stock === 'inStock') {
-            if($categories === null) {
+        if ($stock === 'inStock') {
+            if ($categories === null) {
                 $products = $productList->findProductsInStock();
             } else {
                 $products = $productList->findInStockProductsWithCategory($categories);
             }
         } elseif ($stock === 'outStock') {
-            if($categories === null) {
+            if ($categories === null) {
                 $products = $productList->findProductsNotInStock();
             } else {
                 $products = $productList->findNotInStockProductsWithCategory($categories);
             }
         } else {
-            if($categories === null) {
+            if ($categories === null) {
                 $products = $productList->findAllProducts();
             } else {
                 $products = $productList->findProductsWithCategory($categories);

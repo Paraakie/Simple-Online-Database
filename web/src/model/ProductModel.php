@@ -203,9 +203,13 @@ class ProductModel extends Model
      * @param int $categoryID Product Id
      * @return ProductModel
      */
-    static public function create(string $name, string $stockKeepingUnit, int $cost, int $quantity,
-        int $categoryID): ProductModel
-    {
+    public static function create(
+        string $name,
+        string $stockKeepingUnit,
+        int $cost,
+        int $quantity,
+        int $categoryID
+    ): ProductModel {
         $product = new ProductModel();
         $product->name = $name;
         $product->stockKeepingUnit = $stockKeepingUnit;
