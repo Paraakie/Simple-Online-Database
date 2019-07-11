@@ -5,7 +5,7 @@ Features:
 -Log-in system
 -SQL database of various tech items
 
-Report of Assignment 3
+Report of JIS-TECH
 Written by Sven Gerhards. Reviewed and discussed with Isaac Clancy and Austin Chen.
 
 <b>About</b>
