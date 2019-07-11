@@ -63,5 +63,5 @@ As shown by its absence in the above screenshots, the footer is always at the bo
 
 The database contains users, products and categories. Only Product and Category are related to each other. This is used in the browse-page to easily find all products from one category.
 
-
+<h3>For more details download A3Report.docx</h3>
 
